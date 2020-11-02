@@ -11,6 +11,7 @@ C:/Program\ Files\ (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16F1xxxx_DFP/
 C:/Program\ Files\ (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16F1xxxx_DFP/1.4.119/xc8/pic/include/eeprom_routines.h  \
 mcc_generated_files/interrupt_manager.h  \
 C:/Program\ Files\ (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16F1xxxx_DFP/1.4.119/xc8/pic/include/pic_chip_select.h  \
+mcc_generated_files/tmr0.h  \
 mcc_generated_files/pin_manager.h  \
 mcc_generated_files/i2c1_driver.h  \
 C:/Program\ Files\ (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16F1xxxx_DFP/1.4.119/xc8/pic/include/xc.h  \

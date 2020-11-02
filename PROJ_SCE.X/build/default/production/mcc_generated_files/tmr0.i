@@ -1,5 +1,5 @@
 
-# 1 "mcc_generated_files/pin_manager.c"
+# 1 "mcc_generated_files/tmr0.c"
 
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16F1xxxx_DFP/1.4.119/xc8\pic\include\xc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -21036,69 +21036,226 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 132 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize (void);
+# 13 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdint.h"
+typedef signed char int8_t;
 
-# 144
-void PIN_MANAGER_IOC(void);
+# 20
+typedef signed int int16_t;
+
+# 28
+typedef __int24 int24_t;
+
+# 36
+typedef signed long int int32_t;
+
+# 52
+typedef unsigned char uint8_t;
+
+# 58
+typedef unsigned int uint16_t;
+
+# 65
+typedef __uint24 uint24_t;
+
+# 72
+typedef unsigned long int uint32_t;
+
+# 88
+typedef signed char int_least8_t;
+
+# 96
+typedef signed int int_least16_t;
+
+# 109
+typedef __int24 int_least24_t;
+
+# 118
+typedef signed long int int_least32_t;
+
+# 136
+typedef unsigned char uint_least8_t;
+
+# 143
+typedef unsigned int uint_least16_t;
+
+# 154
+typedef __uint24 uint_least24_t;
+
+# 162
+typedef unsigned long int uint_least32_t;
+
+# 181
+typedef signed char int_fast8_t;
+
+# 188
+typedef signed int int_fast16_t;
+
+# 200
+typedef __int24 int_fast24_t;
+
+# 208
+typedef signed long int int_fast32_t;
+
+# 224
+typedef unsigned char uint_fast8_t;
+
+# 230
+typedef unsigned int uint_fast16_t;
+
+# 240
+typedef __uint24 uint_fast24_t;
+
+# 247
+typedef unsigned long int uint_fast32_t;
+
+# 268
+typedef int32_t intmax_t;
+
+# 282
+typedef uint32_t uintmax_t;
+
+# 289
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
 
 # 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
 typedef unsigned char bool;
 
-# 57 "mcc_generated_files/pin_manager.c"
-void PIN_MANAGER_Initialize(void)
+# 106 "mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+
+# 135
+void TMR0_StartTimer(void);
+
+# 167
+void TMR0_StopTimer(void);
+
+# 202
+uint8_t TMR0_ReadTimer(void);
+
+# 241
+void TMR0_WriteTimer(uint8_t timerVal);
+
+# 278
+void TMR0_Reload(uint8_t periodVal);
+
+# 297
+void TMR0_ISR(void);
+
+# 315
+void TMR0_CallBack(void);
+
+# 333
+void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 351
+extern void (*TMR0_InterruptHandler)(void);
+
+# 369
+void TMR0_DefaultInterruptHandler(void);
+
+# 59 "mcc_generated_files/tmr0.c"
+void (*TMR0_InterruptHandler)(void);
+
+void TMR0_Initialize(void)
 {
 
-# 62
-LATE = 0x00;
-LATD = 0x00;
-LATA = 0x00;
-LATB = 0x00;
-LATC = 0x00;
 
-# 71
-TRISE = 0x07;
-TRISA = 0xEF;
-TRISB = 0xFF;
-TRISC = 0xFF;
-TRISD = 0xFF;
 
-# 80
-ANSELD = 0xFF;
-ANSELC = 0xE7;
-ANSELB = 0xFF;
-ANSELE = 0x07;
-ANSELA = 0xEF;
+T0CON1 = 0x46;
 
-# 89
-WPUD = 0x00;
-WPUE = 0x00;
-WPUB = 0x00;
-WPUA = 0x00;
-WPUC = 0x00;
 
-# 98
-ODCONE = 0x00;
-ODCONA = 0x00;
-ODCONB = 0x00;
-ODCONC = 0x00;
-ODCOND = 0x00;
+TMR0H = 0x0F;
 
-# 107
-SLRCONA = 0xFF;
-SLRCONB = 0xFF;
-SLRCONC = 0xFF;
-SLRCOND = 0xFF;
-SLRCONE = 0x07;
 
-# 120
-SSP1CLKPPS = 0x13;
-RC3PPS = 0x14;
-RC4PPS = 0x15;
-SSP1DATPPS = 0x14;
+TMR0L = 0x00;
+
+
+PIR0bits.TMR0IF = 0;
+
+
+PIE0bits.TMR0IE = 1;
+
+
+TMR0_SetInterruptHandler(TMR0_DefaultInterruptHandler);
+
+
+T0CON0 = 0x80;
 }
 
-void PIN_MANAGER_IOC(void)
+void TMR0_StartTimer(void)
 {
+
+T0CON0bits.T0EN = 1;
+}
+
+void TMR0_StopTimer(void)
+{
+
+T0CON0bits.T0EN = 0;
+}
+
+uint8_t TMR0_ReadTimer(void)
+{
+uint8_t readVal;
+
+
+readVal = TMR0L;
+
+return readVal;
+}
+
+void TMR0_WriteTimer(uint8_t timerVal)
+{
+
+TMR0L = timerVal;
+}
+
+void TMR0_Reload(uint8_t periodVal)
+{
+
+TMR0H = periodVal;
+}
+
+void TMR0_ISR(void)
+{
+static volatile uint16_t CountCallBack = 0;
+
+
+PIR0bits.TMR0IF = 0;
+
+if (++CountCallBack >= 244)
+{
+
+TMR0_CallBack();
+
+
+CountCallBack = 0;
+}
+
+
+}
+
+void TMR0_CallBack(void)
+{
+
+
+if(TMR0_InterruptHandler)
+{
+TMR0_InterruptHandler();
+}
+}
+
+void TMR0_SetInterruptHandler(void (* InterruptHandler)(void)){
+TMR0_InterruptHandler = InterruptHandler;
+}
+
+void TMR0_DefaultInterruptHandler(void){
+
+
 }
 

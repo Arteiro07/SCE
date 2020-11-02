@@ -21036,10 +21036,10 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 112 "mcc_generated_files/pin_manager.h"
+# 132 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 
-# 124
+# 144
 void PIN_MANAGER_IOC(void);
 
 # 13 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdint.h"
@@ -21245,13 +21245,49 @@ inline void i2c1_driver_setI2cISR(interruptHandler handler);
 void (*i2c1_driver_busCollisionISR)(void);
 void (*i2c1_driver_i2cISR)(void);
 
-# 70 "mcc_generated_files/mcc.h"
+# 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
+typedef unsigned char bool;
+
+# 106 "mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+
+# 135
+void TMR0_StartTimer(void);
+
+# 167
+void TMR0_StopTimer(void);
+
+# 202
+uint8_t TMR0_ReadTimer(void);
+
+# 241
+void TMR0_WriteTimer(uint8_t timerVal);
+
+# 278
+void TMR0_Reload(uint8_t periodVal);
+
+# 297
+void TMR0_ISR(void);
+
+# 315
+void TMR0_CallBack(void);
+
+# 333
+void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 351
+extern void (*TMR0_InterruptHandler)(void);
+
+# 369
+void TMR0_DefaultInterruptHandler(void);
+
+# 71 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 83
+# 84
 void OSCILLATOR_Initialize(void);
 
-# 96
+# 97
 void PMD_Initialize(void);
 
 # 50 "mcc_generated_files/mcc.c"
@@ -21260,6 +21296,7 @@ void SYSTEM_Initialize(void)
 PMD_Initialize();
 PIN_MANAGER_Initialize();
 OSCILLATOR_Initialize();
+TMR0_Initialize();
 }
 
 void OSCILLATOR_Initialize(void)

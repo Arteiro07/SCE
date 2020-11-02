@@ -63,7 +63,7 @@ typedef struct _log{
 
 volatile uint16_t timer_flag = 0;
 
-log reg[NREG];
+
 
 #define NREG 25        //number of data registers
 uint8_t PMON = 3;      //sec monitoring period
@@ -78,7 +78,8 @@ uint8_t CLKH = 0;      //initial value for clock hours
 uint8_t CLKM = 0;      //initial value for clock minutes
 
 
-reg[NREG];
+log reg[NREG];
+
 
 void TMR0_callback(void);
 unsigned char tsttc (void);
@@ -215,7 +216,7 @@ void main(void)
     SYSTEM_Initialize();
     
     // initialize timer0
-    TMR0_InterruptHandler(TMR0_callback);
+    TMR0_SetInterruptHandler(TMR0_callback);
 
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
     // Use the following macros to:
@@ -262,7 +263,12 @@ void TMR0_callback(void){
 
 void save_register(unsigned char l, unsigned char c){
     static int n = 0;
-    log buf = (log){.hour = CLKH, .min = CLKM, .sec = (timer_flag%60), .temp = c, .lum = l};
+    log buf;
+    buf.hour = CLKH;
+    buf.min = CLKM;
+    buf.sec = (timer_flag%60);
+    buf.temp = c;
+    buf.lum = l;
     reg[n] = buf;
     n++;
     n = n % 6;

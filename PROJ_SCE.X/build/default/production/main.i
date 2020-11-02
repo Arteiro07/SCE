@@ -21036,10 +21036,10 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 112 "mcc_generated_files/pin_manager.h"
+# 132 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 
-# 124
+# 144
 void PIN_MANAGER_IOC(void);
 
 # 13 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdint.h"
@@ -21245,13 +21245,49 @@ inline void i2c1_driver_setI2cISR(interruptHandler handler);
 void (*i2c1_driver_busCollisionISR)(void);
 void (*i2c1_driver_i2cISR)(void);
 
-# 70 "mcc_generated_files/mcc.h"
+# 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
+typedef unsigned char bool;
+
+# 106 "mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+
+# 135
+void TMR0_StartTimer(void);
+
+# 167
+void TMR0_StopTimer(void);
+
+# 202
+uint8_t TMR0_ReadTimer(void);
+
+# 241
+void TMR0_WriteTimer(uint8_t timerVal);
+
+# 278
+void TMR0_Reload(uint8_t periodVal);
+
+# 297
+void TMR0_ISR(void);
+
+# 315
+void TMR0_CallBack(void);
+
+# 333
+void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 351
+extern void (*TMR0_InterruptHandler)(void);
+
+# 369
+void TMR0_DefaultInterruptHandler(void);
+
+# 71 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 83
+# 84
 void OSCILLATOR_Initialize(void);
 
-# 96
+# 97
 void PMD_Initialize(void);
 
 # 154 "I2C/i2c.h"
@@ -21268,9 +21304,179 @@ signed char WriteI2C( unsigned char data_out );
 
 signed char getsI2C( unsigned char *rdptr, unsigned char length );
 
-# 52 "main.c"
-unsigned char tsttc (void)
+# 7 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdlib.h"
+typedef unsigned short wchar_t;
+
+# 15
+typedef struct {
+int rem;
+int quot;
+} div_t;
+typedef struct {
+unsigned rem;
+unsigned quot;
+} udiv_t;
+typedef struct {
+long quot;
+long rem;
+} ldiv_t;
+typedef struct {
+unsigned long quot;
+unsigned long rem;
+} uldiv_t;
+
+# 65
+extern double atof(const char *);
+extern double strtod(const char *, const char **);
+extern int atoi(const char *);
+extern unsigned xtoi(const char *);
+extern long atol(const char *);
+
+# 73
+extern long strtol(const char *, char **, int);
+
+extern int rand(void);
+extern void srand(unsigned int);
+extern void * calloc(size_t, size_t);
+extern div_t div(int numer, int denom);
+extern udiv_t udiv(unsigned numer, unsigned denom);
+extern ldiv_t ldiv(long numer, long denom);
+extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
+
+# 85
+extern unsigned long _lrotl(unsigned long value, unsigned int shift);
+extern unsigned long _lrotr(unsigned long value, unsigned int shift);
+extern unsigned int _rotl(unsigned int value, unsigned int shift);
+extern unsigned int _rotr(unsigned int value, unsigned int shift);
+
+
+
+
+extern void * malloc(size_t);
+extern void free(void *);
+extern void * realloc(void *, size_t);
+
+# 104
+extern int atexit(void (*)(void));
+extern char * getenv(const char *);
+extern char ** environ;
+extern int system(char *);
+extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
+extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
+extern int abs(int);
+extern long labs(long);
+
+extern char * itoa(char * buf, int val, int base);
+extern char * utoa(char * buf, unsigned val, int base);
+
+
+
+
+extern char * ltoa(char * buf, long val, int base);
+extern char * ultoa(char * buf, unsigned long val, int base);
+
+extern char * ftoa(float f, int * status);
+
+# 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
+typedef unsigned char bool;
+
+# 56 "main.c"
+typedef struct _log{
+uint8_t hour;
+uint8_t min;
+uint8_t sec;
+uint8_t temp;
+uint8_t lum;
+}log;
+
+volatile uint16_t timer_flag = 0;
+
+
+
+
+uint8_t PMON = 3;
+uint8_t TALA = 5;
+uint8_t ALAH = 12;
+uint8_t ALAM = 0;
+uint8_t ALAS = 0;
+uint8_t ALAT = 28;
+uint8_t ALAL = 4;
+uint8_t ALAF = 0;
+uint8_t CLKH = 0;
+uint8_t CLKM = 0;
+
+
+log reg[25];
+
+
+void TMR0_callback(void);
+unsigned char tsttc (void);
+
+# 206
+void main(void)
 {
+unsigned char c;
+unsigned char hc;
+unsigned char lc;
+unsigned char c1;
+unsigned char c2;
+unsigned char buf[17];
+
+
+SYSTEM_Initialize();
+
+
+TMR0_SetInterruptHandler(TMR0_callback);
+
+# 225
+(INTCONbits.GIE = 1);
+
+
+(INTCONbits.PEIE = 1);
+
+# 236
+i2c1_driver_open();
+TRISCbits.TRISC3 = 1;
+TRISCbits.TRISC4 = 1;
+WPUC3 = 1;
+WPUC4 = 1;
+
+while (1)
+{
+
+if (PMON != 0 && (timer_flag%3) == 0){
+c = tsttc();
+
+}
+}
+}
+
+void TMR0_callback(void){
+timer_flag++;
+if(timer_flag % 60 == 0){
+CLKM++;
+
+}
+if(CLKM % 60 == 0){
+CLKH++;
+CLKM = 0;
+}
+}
+
+void save_register(unsigned char l, unsigned char c){
+static int n = 0;
+log buf;
+buf.hour = CLKH;
+buf.min = CLKM;
+buf.sec = (timer_flag%60);
+buf.temp = c;
+buf.lum = l;
+reg[n] = buf;
+n++;
+n = n % 6;
+}
+
+unsigned char tsttc (void){
 unsigned char value;
 do{
 while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
@@ -21296,161 +21502,5 @@ SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN); while ((SSP
 SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
 
 return value;
-}
-
-# 87
-void LCDsend(unsigned char c)
-{
-while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x4e | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(c); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
-}
-unsigned char LCDrecv(unsigned char mode)
-{
-unsigned char hc;
-unsigned char lc;
-
-while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x4e | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0xf0 | 0x08 | 0x02 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0xf0 | 0x08 | 0x04 | 0x02 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-_delay((unsigned long)((1)*(1000000/4000000.0)));
-SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x4e | 0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-hc = ReadI2C(); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN);
-SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x4e | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0xf0 | 0x08 | 0x02 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0xf0 | 0x08 | 0x04 | 0x02 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-_delay((unsigned long)((1)*(1000000/4000000.0)));
-SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x4e | 0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-lc = ReadI2C(); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN);
-SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x4e | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0xf0 | 0x08 | 0x02 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
-return ((hc&0xf0) | ((lc>>4)&0x0f));
-}
-
-void LCDsend2x4(unsigned char c, unsigned char mode)
-{
-unsigned char hc;
-unsigned char lc;
-
-hc = c & 0xf0;
-lc = (c << 4) & 0xf0;
-
-while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x4e | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(hc | 0x08 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(hc | 0x08 | 0x04 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-_delay((unsigned long)((1)*(1000000/4000000.0)));
-WriteI2C(hc | 0x08 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(lc | 0x08 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(lc | 0x08 | 0x04 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-_delay((unsigned long)((1)*(1000000/4000000.0)));
-WriteI2C(lc | 0x08 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
-_delay((unsigned long)((50)*(1000000/4000000.0)));
-}
-
-void LCDinit(void)
-{
-_delay((unsigned long)((50)*(1000000/4000.0)));
-LCDsend(0x30);
-LCDsend(0x34); _delay((unsigned long)((500)*(1000000/4000000.0))); LCDsend(0x30);
-_delay((unsigned long)((5)*(1000000/4000.0)));
-LCDsend(0x30);
-LCDsend(0x34); _delay((unsigned long)((500)*(1000000/4000000.0))); LCDsend(0x30);
-_delay((unsigned long)((100)*(1000000/4000000.0)));
-LCDsend(0x30);
-LCDsend(0x34); _delay((unsigned long)((500)*(1000000/4000000.0))); LCDsend(0x30);
-_delay((unsigned long)((100)*(1000000/4000000.0)));
-LCDsend(0x20);
-LCDsend(0x24); _delay((unsigned long)((500)*(1000000/4000000.0))); LCDsend(0x20);
-_delay((unsigned long)((5)*(1000000/4000.0)));
-
-LCDsend2x4(0x28, 0);
-LCDsend2x4(0x06, 0);
-LCDsend2x4(0x0f, 0);
-LCDsend2x4(0x01, 0);
-_delay((unsigned long)((2)*(1000000/4000.0)));
-}
-
-void LCDcmd(unsigned char c)
-{
-LCDsend2x4(c, 0);
-}
-
-void LCDchar(unsigned char c)
-{
-LCDsend2x4(c, 0x01);
-}
-
-void LCDstr(unsigned char *p)
-{
-unsigned char c;
-
-while((c = *p++)) LCDchar(c);
-}
-
-int LCDbusy()
-{
-if(LCDrecv(0) & 0x80) return 1;
-return 0;
-}
-
-void main(void)
-{
-unsigned char c;
-unsigned char hc;
-unsigned char lc;
-unsigned char c1;
-unsigned char c2;
-unsigned char buf[17];
-
-
-SYSTEM_Initialize();
-
-# 222
-i2c1_driver_open();
-TRISCbits.TRISC3 = 1;
-TRISCbits.TRISC4 = 1;
-WPUC3 = 1;
-WPUC4 = 1;
-LCDinit();
-
-while (1)
-{
-
-
-__nop();
-c = tsttc();
-
-
-LCDcmd(0x80);
-LCDstr("Temp");
-LCDcmd(0xc0);
-
-sprintf(buf, "%02d C", c);
-LCDstr(buf);
-LCDcmd(0x81);
-
-
-c1 = LCDrecv(0);
-c2 = LCDrecv(0x01);
-LCDcmd(0xc8);
-sprintf(buf, "%02x %02x", c1, c2);
-LCDstr(buf);
-__nop();
-_delay((unsigned long)((3000)*(1000000/4000.0)));
-}
 }
 
