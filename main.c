@@ -213,7 +213,7 @@ bool lcd(unsigned char temperature, unsigned char luminosity, bool mode, bool al
      
 
     
-    if(mode)
+    if(state==0)
     {
         LCDcmd(0x80);
         sprintf(buf, "%02d:%02d:%02d", h,m,s);
@@ -268,12 +268,9 @@ bool lcd(unsigned char temperature, unsigned char luminosity, bool mode, bool al
         sprintf(buf, "L%01d", luminosity_alarm);
         LCDstr(buf);
         
-        if (state ==0)
-        {
-            LCDcmd(0x80);
-        }
         if (state ==1)
         {
+            LCDcmd(0x80);
             LCDcmd(0x81);
         }
         if (state ==2)
@@ -447,7 +444,7 @@ void main(void)
     unsigned char alam=00;
     unsigned char alas=00;
     
-    unsigned char state=16;
+    unsigned char state=1;
     
     // initialize the device
     SYSTEM_Initialize();
