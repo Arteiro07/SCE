@@ -194,7 +194,7 @@ int LCDbusy()
 }
 
 
-bool lcd(unsigned char temperature, unsigned char luminosity, bool mode, bool alarm, unsigned char ctl, unsigned char h, unsigned char m, unsigned char s, unsigned char state, unsigned char temperature_alarm, unsigned char luminosity_alarm, unsigned char alah, unsigned char alam,unsigned char alas )
+bool lcd(unsigned char temperature, unsigned char luminosity, bool alarm, unsigned char ctl, unsigned char h, unsigned char m, unsigned char s, unsigned char state, unsigned char temperature_alarm, unsigned char luminosity_alarm, unsigned char alah, unsigned char alam,unsigned char alas )
 {
     unsigned char buf[17];    
     
@@ -268,30 +268,21 @@ bool lcd(unsigned char temperature, unsigned char luminosity, bool mode, bool al
         sprintf(buf, "L%01d", luminosity_alarm);
         LCDstr(buf);
         
-        if (state ==1)
+        if (state ==1) // changing hours
         {
-            LCDcmd(0x80);
             LCDcmd(0x81);
         }
         if (state ==2)
         {
-            LCDcmd(0x83);
-        }
-        if (state ==3)
-        {
             LCDcmd(0x84);
         }
-        if (state ==4)
-        {
-            LCDcmd(0x86);
-        }
-        if (state ==5)
+        if (state ==3)
         {
             LCDcmd(0x87);
         }
         //////////////////////////////////////////        
         // Change to C clock alarm
-        if (state ==6)
+        if (state ==4)
         {
             LCDcmd(0x80);
             sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);  //change to alarm time
@@ -299,16 +290,7 @@ bool lcd(unsigned char temperature, unsigned char luminosity, bool mode, bool al
             LCDcmd(0x8a);
         }
         // Change the alarm time h1
-        if (state ==7)
-        {
-            LCDcmd(0x80);
-            sprintf(buf, "%02d:%02d:%02d", alah, alam, alas); //change to alarm time
-            LCDstr(buf);
-            LCDcmd(0x80);
-            
-        }
-        // Change the alarm time h2 
-        if (state ==8)
+        if (state ==5)
         {
             LCDcmd(0x80);
             sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);  //change to alarm time
@@ -317,16 +299,7 @@ bool lcd(unsigned char temperature, unsigned char luminosity, bool mode, bool al
             
         }
         // Change the alarm time m1
-        if (state ==9)
-        {
-            LCDcmd(0x80);
-            sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);  //change to alarm time
-            LCDstr(buf);
-            LCDcmd(0x83);
-            
-        }
-        // Change the alarm time m2
-        if (state ==10)
+        if (state ==6)
         {
             LCDcmd(0x80);
             sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);  //change to alarm time
@@ -335,16 +308,7 @@ bool lcd(unsigned char temperature, unsigned char luminosity, bool mode, bool al
             
         }
         // Change the alarm time s1
-        if (state ==11)
-        {
-            LCDcmd(0x80);
-            sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);  //change to alarm time
-            LCDstr(buf);
-            LCDcmd(0x86);
-            
-        }
-        // Change the alarm time s2
-        if (state ==12)
+        if (state ==7)
         {
             LCDcmd(0x80);
             sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);  //change to alarm time
@@ -354,7 +318,7 @@ bool lcd(unsigned char temperature, unsigned char luminosity, bool mode, bool al
         }
         /////////////////////////////////////////////
         // Change to T temperature alarm
-        if (state ==13)
+        if (state ==8)
         {
             LCDcmd(0xc0);
             sprintf(buf, "%02d C", temperature_alarm);
@@ -364,16 +328,7 @@ bool lcd(unsigned char temperature, unsigned char luminosity, bool mode, bool al
                 
         
         // Change the alarm temp1
-        if (state ==14)
-        {
-            LCDcmd(0xc0);
-            sprintf(buf, "%02d C", temperature_alarm);
-            LCDstr(buf);
-            LCDcmd(0xc0);
-            
-        }
-        // Change the alarm temp2
-        if (state ==15)
+        if (state ==9)
         {
             LCDcmd(0xc0);
             sprintf(buf, "%02d C", temperature_alarm);
@@ -383,7 +338,7 @@ bool lcd(unsigned char temperature, unsigned char luminosity, bool mode, bool al
         
         ///////////////////////////////////////
         // Change to L luminosity alarm
-        if (state ==16)
+        if (state ==10)
         {
             LCDcmd(0xce);
             sprintf(buf, "L%01d", luminosity_alarm);
@@ -392,7 +347,7 @@ bool lcd(unsigned char temperature, unsigned char luminosity, bool mode, bool al
         }
 
         // Change the alarm lum1
-        if (state ==17)
+        if (state ==11)
         {
             LCDcmd(0xce);
             sprintf(buf, "L%01d", luminosity_alarm);
@@ -400,7 +355,7 @@ bool lcd(unsigned char temperature, unsigned char luminosity, bool mode, bool al
             LCDcmd(0xcf);
         }
         // Change the alarm enable/disable
-        if (state ==18)
+        if (state ==12)
         {
             LCDcmd(0x0f);
         }
@@ -433,7 +388,6 @@ void main(void)
     unsigned short luminosity=6;
     unsigned char luminosity_alarm=4;
     unsigned char hc;   
-    bool mode = true;
     bool alarm = false;
     unsigned char ctl=1;
     
@@ -460,7 +414,7 @@ void main(void)
         NOP();
 	temperature = tsttc();
         luminosity = lumin();
-        lcd(temperature, luminosity, mode, alarm, ctl, h, m, s, state, temperature_alarm, luminosity_alarm, alah, alam, alas);
+        lcd(temperature, luminosity, alarm, ctl, h, m, s, state, temperature_alarm, luminosity_alarm, alah, alam, alas);
 
         NOP();
         __delay_ms(3000);
