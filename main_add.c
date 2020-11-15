@@ -6,6 +6,18 @@
 #define L_MIN         		0
 #define L_MAX         		7
 
+void checkButtonS1(void);
+void checkButtonS2(void);
+void conf_clock_hh(void);
+void conf_clock_mm(void);
+void conf_clock_ss(void);
+void conf_alarm_hh(void);
+void conf_alarm_mm(void);
+void conf_alarm_ss(void);
+void conf_temp(void);
+void conf_lumin(void);
+void conf_alarm_flag(void);
+
 //need to set custom name of RB4 to SWITCH_S1 & RC5 to SWITCH_S2 - DONE IN pin_manager_add.h
 
 
