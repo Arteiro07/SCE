@@ -52,8 +52,10 @@ log reg[NREG];
 uint8_t btn1State = NOT_PRESSED;
 uint8_t btn2State = NOT_PRESSED;    
 
-
+void TMR2_callback(void);
 void TMR0_callback(void);
+void save_vars();
+void check_vars();
 void save_register(unsigned char l, unsigned char c);
 void checkButtonS1(void);
 void checkButtonS2(void);

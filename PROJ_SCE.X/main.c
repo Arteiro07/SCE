@@ -58,6 +58,9 @@
 
 volatile uint16_t timer_flag = 0;
 
+uint16_t PWM_DUTY = 0;
+
+unsigned char ctl=0;
 
 /*
 
@@ -207,7 +210,8 @@ void main(void)
     
     // initialize timer0
     TMR0_SetInterruptHandler(TMR0_callback);
-
+    TMR2_SetInterruptHandler(TMR2_callback);
+    
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
     // Use the following macros to:
 
@@ -230,17 +234,48 @@ void main(void)
     WPUC4 = 1;
     
     
-    unsigned char ctl=1;
+
     LCDinit();
     
+    check_vars();
     while (1)
     {
-        // Add your application code
+        
+        unsigned char new_c;
+        unsigned char new_l;
+
+
+        //on s1 check, ctl to 0 if pressed
+
         if (PMON != 0 && (timer_flag%PMON) == 0){
-            c = tsttc();
-            l = lumin();
-            //D2_LED_Toggle();
+                new_c = tsttc();
+                new_l = lumin();
+
+                if(new_c != c || new_l != l){
+                        c = new_c;
+                        l = new_l;
+                        //Save to register
+                }
+
+                if(ALAF == 1 && ctl == 0){
+                        if(c > ALAT){
+                                //D3_LED_Toggle();
+                                ctl = 2;
+                        }else if(l < ALAL){
+                                //D2_LED_Toggle();
+                                ctl = 3;
+                        }else if(CLKH == ALAH && CLKM == ALAM && timer_flag%60 == ALAS){
+                                ctl = 1;
+                        }
+
+                        if(ctl != 0){
+                                //change D4 brightness
+                        }
+
+                }
+                
         }
+        
         checkButtonS1();
 		checkButtonS2();
         
@@ -249,7 +284,13 @@ void main(void)
 				//normal mode
 				if(btn1State == PRESSED){
 					//if s1 pressed, go to conf.mode
-					state = 1;
+					
+                    if(ctl == 0){
+                        state = 1;
+                    }else{
+                    ctl = 0;
+                    }
+                    
 				}
 				break;
 			case 1:
@@ -363,15 +404,32 @@ void main(void)
 				break;
 		}
 	
-        
+        if (state != 0){
+            save_vars();
+        }
         
         lcd(c, l, ALAF, ctl, CLKH, CLKM, (timer_flag%60), state, ALAT, ALAL, ALAH, ALAM, ALAS);
+        __delay_ms(100);
+        
+        //SLEEP();
     }
 }
 
+void TMR2_callback(void){
+    if (ctl != 0){
+        PWM_DUTY += 20;
+
+        PWM_DUTY = (PWM_DUTY % 500);
+        PWM6_LoadDutyValue(PWM_DUTY);
+    }
+}
+
+
+
 void TMR0_callback(void){
     timer_flag++;
-    if(timer_flag % 60 == 0){
+    D5_LED_Toggle(); 
+   if(timer_flag % 60 == 0){
         CLKM++;
         //send time to EEPROM
     }
@@ -380,15 +438,67 @@ void TMR0_callback(void){
         CLKH %= 24;
         CLKM = 0;
 
-        DATAEE_WriteByte(159,CLKH);
-        DATAEE_WriteByte(160,CLKM);
-        //DATAEE_WriteByte(161,CSUM);
+        save_vars();
     }
 }
 
+//150 
+void save_vars(){
+    uint16_t first = 0x7096;
+    CSUM = PMON + TALA + ALAH + ALAM + ALAS + ALAT + ALAL + ALAF + CLKH + CLKM;
+    
+    DATAEE_WriteByte(first++,PASS);
+    DATAEE_WriteByte(first++,PMON);
+    DATAEE_WriteByte(first++,TALA);
+    DATAEE_WriteByte(first++,ALAH);
+    DATAEE_WriteByte(first++,ALAM);
+    DATAEE_WriteByte(first++,ALAS);
+    DATAEE_WriteByte(first++,ALAT);
+    DATAEE_WriteByte(first++,ALAL);
+    DATAEE_WriteByte(first++,ALAF);
+    DATAEE_WriteByte(first++,CLKH);
+    DATAEE_WriteByte(first++,CLKM);
+    DATAEE_WriteByte(first++,CSUM);
+    
+}
+
+void check_vars(){
+    uint8_t pass = DATAEE_ReadByte(0x7096);
+    uint16_t last = 0x70a1;
+    if (pass == 0xaa){
+        CSUM = DATAEE_ReadByte(last--);
+        CSUM -= DATAEE_ReadByte(last--);
+        CSUM -= DATAEE_ReadByte(last--);
+        CSUM -= DATAEE_ReadByte(last--);
+        CSUM -= DATAEE_ReadByte(last--);
+        CSUM -= DATAEE_ReadByte(last--);
+        CSUM -= DATAEE_ReadByte(last--);
+        CSUM -= DATAEE_ReadByte(last--);
+        CSUM -= DATAEE_ReadByte(last--);
+        CSUM -= DATAEE_ReadByte(last--);
+        CSUM -= DATAEE_ReadByte(last);
+        
+        if (CSUM == 0){
+            PMON = DATAEE_ReadByte(last++);
+            TALA = DATAEE_ReadByte(last++);
+            ALAH = DATAEE_ReadByte(last++);
+            ALAM = DATAEE_ReadByte(last++);
+            ALAS = DATAEE_ReadByte(last++);
+            ALAT = DATAEE_ReadByte(last++);
+            ALAL = DATAEE_ReadByte(last++);
+            ALAF = DATAEE_ReadByte(last++);
+            CLKH = DATAEE_ReadByte(last++);
+            CLKM = DATAEE_ReadByte(last++);
+        }
+    }
+    return;
+}
+
+
+
 /* Register are from address 0 to 125 of EEPROM*/
 void save_register(unsigned char l, unsigned char c){
-    static uint16_t n = 0;
+    static uint16_t n = 0xf000;
     log buf;
     buf.hour = CLKH;
     buf.min = CLKM;
@@ -401,7 +511,7 @@ void save_register(unsigned char l, unsigned char c){
     DATAEE_WriteByte(n++,buf.sec);
     DATAEE_WriteByte(n++,buf.temp);
     DATAEE_WriteByte(n++,buf.lum);
-    n = n % (5*NREG);
+    n = (n % (5*NREG)) + 0x7000;
 }
 
 void checkButtonS1(void) {
@@ -413,6 +523,7 @@ void checkButtonS1(void) {
     } else if (SWITCH_S1_PORT == HIGH) {
         btn1State = NOT_PRESSED;
     }
+    
 }
 
 void checkButtonS2(void) {

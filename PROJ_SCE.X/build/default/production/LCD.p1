@@ -85,7 +85,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
 "130 mcc_generated_files/adcc.h
 [v _ADCC_Initialize `(v ~T0 @X0 0 ef ]
-"300 LCD.c
+"440 LCD.c
 [c E12264 0 60 61 62 63 .. ]
 [n E12264 . CH_0 channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
 "159 mcc_generated_files/adcc.h
@@ -13769,8 +13769,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;xc8\pic\include\pic.h: 137: extern __bank0 unsigned char __resetbits;
 [; ;xc8\pic\include\pic.h: 138: extern __bank0 __bit __powerdown;
 [; ;xc8\pic\include\pic.h: 139: extern __bank0 __bit __timeout;
-[; ;pin_manager.h: 192: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 204: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 244: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 256: void PIN_MANAGER_IOC(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef __int24 int24_t;
@@ -13910,6 +13910,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 772: bool ADCC_HasErrorCrossedUpperThreshold(void);
 [; ;adcc.h: 800: bool ADCC_HasErrorCrossedLowerThreshold(void);
 [; ;adcc.h: 827: uint8_t ADCC_GetConversionStageStatus(void);
+[; ;pwm6.h: 102: void PWM6_Initialize(void);
+[; ;pwm6.h: 129: void PWM6_LoadDutyValue(uint16_t dutyValue);
 [; ;stdbool.h: 15: typedef unsigned char bool;
 [; ;memory.h: 99: uint16_t FLASH_ReadWord(uint16_t flashAddr);
 [; ;memory.h: 128: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
@@ -13917,6 +13919,70 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
 [; ;memory.h: 222: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 248: uint8_t DATAEE_ReadByte(uint16_t bAdd);
+[; ;stdbool.h: 15: typedef unsigned char bool;
+[; ;tmr2.h: 79: typedef enum
+[; ;tmr2.h: 80: {
+[; ;tmr2.h: 89: TMR2_ROP_STARTS_TMRON,
+[; ;tmr2.h: 94: TMR2_ROP_STARTS_TMRON_ERSHIGH,
+[; ;tmr2.h: 99: TMR2_ROP_STARTS_TMRON_ERSLOW,
+[; ;tmr2.h: 104: TMR2_ROP_RESETS_ERSBOTHEDGE,
+[; ;tmr2.h: 109: TMR2_ROP_RESETS_ERSRISINGEDGE,
+[; ;tmr2.h: 114: TMR2_ROP_RESETS_ERSFALLINGEDGE,
+[; ;tmr2.h: 119: TMR2_ROP_RESETS_ERSLOW,
+[; ;tmr2.h: 124: TMR2_ROP_RESETS_ERSHIGH,
+[; ;tmr2.h: 135: TMR2_OS_STARTS_TMRON,
+[; ;tmr2.h: 140: TMR2_OS_STARTS_ERSRISINGEDGE ,
+[; ;tmr2.h: 145: TMR2_OS_STARTS_ERSFALLINGEDGE ,
+[; ;tmr2.h: 150: TMR2_OS_STARTS_ERSBOTHEDGE,
+[; ;tmr2.h: 156: TMR2_OS_STARTS_ERSFIRSTRISINGEDGE,
+[; ;tmr2.h: 162: TMR2_OS_STARTS_ERSFIRSTFALLINGEDGE,
+[; ;tmr2.h: 168: TMR2_OS_STARTS_ERSRISINGEDGEDETECT,
+[; ;tmr2.h: 173: TMR2_OS_STARTS_ERSFALLINGEDGEDETECT,
+[; ;tmr2.h: 178: TMR2_OS_STARTS_TMRON_ERSHIGH = 0x16,
+[; ;tmr2.h: 183: TMR2_OS_STARTS_TMRON_ERSLOW = 0x17,
+[; ;tmr2.h: 192: TMR2_MS_STARTS_TMRON_ERSRISINGEDGEDETECT = 0x11,
+[; ;tmr2.h: 197: TMR2_MS_STARTS_TMRON_ERSFALLINGEDGEDETECT = 0x12,
+[; ;tmr2.h: 203: TMR2_MS_STARTS_TMRON_ERSBOTHEDGE = 0x13
+[; ;tmr2.h: 205: } TMR2_HLT_MODE;
+[; ;tmr2.h: 220: typedef enum
+[; ;tmr2.h: 221: {
+[; ;tmr2.h: 224: TMR2_T2INPPS,
+[; ;tmr2.h: 228: TMR2_RESERVED,
+[; ;tmr2.h: 232: TMR2_T4POSTSCALED,
+[; ;tmr2.h: 236: TMR2_T6POSTSCALED,
+[; ;tmr2.h: 239: TMR2_CCP1_OUT,
+[; ;tmr2.h: 243: TMR2_CCP2_OUT,
+[; ;tmr2.h: 247: TMR2_CCP3_OUT,
+[; ;tmr2.h: 251: TMR2_CCP4_OUT,
+[; ;tmr2.h: 255: TMR2_CCP5_OUT,
+[; ;tmr2.h: 259: TMR2_PWM6_OUT,
+[; ;tmr2.h: 263: TMR2_PWM7_OUT,
+[; ;tmr2.h: 267: TMR2_C1_OUT_SYNC,
+[; ;tmr2.h: 271: TMR2_C2_OUT_SYNC,
+[; ;tmr2.h: 275: TMR2_ZCD_OUTPUT,
+[; ;tmr2.h: 279: TMR2_CLC1_OUT,
+[; ;tmr2.h: 283: TMR2_CLC2_OUT,
+[; ;tmr2.h: 287: TMR2_CLC3_OUT,
+[; ;tmr2.h: 291: TMR2_CLC4_OUT
+[; ;tmr2.h: 293: } TMR2_HLT_EXT_RESET_SOURCE;
+[; ;tmr2.h: 335: void TMR2_Initialize(void);
+[; ;tmr2.h: 371: void TMR2_ModeSet(TMR2_HLT_MODE mode);
+[; ;tmr2.h: 406: void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
+[; ;tmr2.h: 435: void TMR2_Start(void);
+[; ;tmr2.h: 464: void TMR2_StartTimer(void);
+[; ;tmr2.h: 496: void TMR2_Stop(void);
+[; ;tmr2.h: 528: void TMR2_StopTimer(void);
+[; ;tmr2.h: 563: uint8_t TMR2_Counter8BitGet(void);
+[; ;tmr2.h: 598: uint8_t TMR2_ReadTimer(void);
+[; ;tmr2.h: 637: void TMR2_Counter8BitSet(uint8_t timerVal);
+[; ;tmr2.h: 676: void TMR2_WriteTimer(uint8_t timerVal);
+[; ;tmr2.h: 728: void TMR2_Period8BitSet(uint8_t periodVal);
+[; ;tmr2.h: 780: void TMR2_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr2.h: 798: void TMR2_ISR(void);
+[; ;tmr2.h: 816: void TMR2_CallBack(void);
+[; ;tmr2.h: 833: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr2.h: 851: extern void (*TMR2_InterruptHandler)(void);
+[; ;tmr2.h: 869: void TMR2_DefaultInterruptHandler(void);
 [; ;stdbool.h: 15: typedef unsigned char bool;
 [; ;tmr0.h: 106: void TMR0_Initialize(void);
 [; ;tmr0.h: 135: void TMR0_StartTimer(void);
@@ -13929,9 +13995,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.h: 333: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr0.h: 351: extern void (*TMR0_InterruptHandler)(void);
 [; ;tmr0.h: 369: void TMR0_DefaultInterruptHandler(void);
-[; ;mcc.h: 73: void SYSTEM_Initialize(void);
-[; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 99: void PMD_Initialize(void);
+[; ;mcc.h: 75: void SYSTEM_Initialize(void);
+[; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 101: void PMD_Initialize(void);
 [; ;i2c.h: 154: void OpenI2C( unsigned char sync_mode, unsigned char slew );
 [; ;i2c.h: 156: signed char WriteI2C( unsigned char data_out );
 [; ;i2c.h: 158: signed char putsI2C( unsigned char *wrptr );
@@ -14553,486 +14619,850 @@ Version 3.2 HI-TECH Software Intermediate Code
 "129
 [v _buf `uc ~T0 @X0 -> 17 `i a ]
 [; ;LCD.c: 129: unsigned char buf[17];
-[; ;LCD.c: 131: if (alarm)
-"131
-[e $ ! != -> _alarm `i -> -> -> 0 `i `uc `i 1763  ]
-[; ;LCD.c: 132: {
+[; ;LCD.c: 132: if (alarm)
 "132
-{
-[; ;LCD.c: 133: LCDcmd(0x8F);
+[e $ ! != -> _alarm `i -> -> -> 0 `i `uc `i 1763  ]
+[; ;LCD.c: 133: {
 "133
-[e ( _LCDcmd (1 -> -> 143 `i `uc ]
-[; ;LCD.c: 134: sprintf(buf, "A");
-"134
-[e ( _sprintf (1 , &U _buf :s 1C ]
-[; ;LCD.c: 135: LCDstr(buf);
-"135
-[e ( _LCDstr (1 &U _buf ]
-"136
-}
-[; ;LCD.c: 136: }
-[e $U 1764  ]
-"137
-[e :U 1763 ]
-[; ;LCD.c: 137: else
-[; ;LCD.c: 138: {
-"138
 {
-[; ;LCD.c: 139: LCDcmd(0x8F);
-"139
+[; ;LCD.c: 134: LCDcmd(0x8F);
+"134
 [e ( _LCDcmd (1 -> -> 143 `i `uc ]
-[; ;LCD.c: 140: sprintf(buf, "a");
-"140
-[e ( _sprintf (1 , &U _buf :s 2C ]
-[; ;LCD.c: 141: LCDstr(buf);
-"141
+[; ;LCD.c: 135: sprintf(buf, "A");
+"135
+[e ( _sprintf (1 , &U _buf :s 1C ]
+[; ;LCD.c: 136: LCDstr(buf);
+"136
 [e ( _LCDstr (1 &U _buf ]
+"137
+}
+[; ;LCD.c: 137: }
+[e $U 1764  ]
+"138
+[e :U 1763 ]
+[; ;LCD.c: 138: else
+[; ;LCD.c: 139: {
+"139
+{
+[; ;LCD.c: 140: LCDcmd(0x8F);
+"140
+[e ( _LCDcmd (1 -> -> 143 `i `uc ]
+[; ;LCD.c: 141: sprintf(buf, "a");
+"141
+[e ( _sprintf (1 , &U _buf :s 2C ]
+[; ;LCD.c: 142: LCDstr(buf);
 "142
+[e ( _LCDstr (1 &U _buf ]
+"143
 }
 [e :U 1764 ]
-[; ;LCD.c: 142: }
-[; ;LCD.c: 146: if(state==0)
-"146
+[; ;LCD.c: 143: }
+[; ;LCD.c: 144: if(state==0)
+"144
 [e $ ! == -> _state `i -> 0 `i 1765  ]
-[; ;LCD.c: 147: {
+[; ;LCD.c: 145: {
+"145
+{
+[; ;LCD.c: 146: LCDcmd(0x80);
+"146
+[e ( _LCDcmd (1 -> -> 128 `i `uc ]
+[; ;LCD.c: 147: sprintf(buf, "%02d:%02d:%02d", h,m,s);
 "147
-{
-[; ;LCD.c: 148: LCDcmd(0x80);
-"148
-[e ( _LCDcmd (1 -> -> 128 `i `uc ]
-[; ;LCD.c: 149: sprintf(buf, "%02d:%02d:%02d", h,m,s);
-"149
 [e ( _sprintf (1 , , , (. , &U _buf :s 3C -> _h `i -> _m `i -> _s `i ]
-[; ;LCD.c: 150: LCDstr(buf);
+[; ;LCD.c: 148: LCDstr(buf);
+"148
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 150: LCDcmd(0xc0);
 "150
-[e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 152: LCDcmd(0xc0);
-"152
 [e ( _LCDcmd (1 -> -> 192 `i `uc ]
-[; ;LCD.c: 153: sprintf(buf, "%02d C", temperature);
-"153
+[; ;LCD.c: 151: sprintf(buf, "%02d C", temperature);
+"151
 [e ( _sprintf (1 , (. , &U _buf :s 4C -> _temperature `i ]
-[; ;LCD.c: 154: LCDstr(buf);
+[; ;LCD.c: 152: LCDstr(buf);
+"152
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 154: LCDcmd(0xce);
 "154
-[e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 156: LCDcmd(0xce);
-"156
 [e ( _LCDcmd (1 -> -> 206 `i `uc ]
-[; ;LCD.c: 157: sprintf(buf, "L%01d", luminosity);
-"157
+[; ;LCD.c: 155: sprintf(buf, "L%01d", luminosity);
+"155
 [e ( _sprintf (1 , (. , &U _buf :s 5C -> _luminosity `i ]
-[; ;LCD.c: 158: LCDstr(buf);
+[; ;LCD.c: 156: LCDstr(buf);
+"156
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 158: if (ctl==1)
 "158
-[e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 160: if (ctl==1)
-"160
 [e $ ! == -> _ctl `i -> 1 `i 1766  ]
-[; ;LCD.c: 161: {
+[; ;LCD.c: 159: {
+"159
+{
+[; ;LCD.c: 160: LCDcmd(0x8A);
+"160
+[e ( _LCDcmd (1 -> -> 138 `i `uc ]
+[; ;LCD.c: 161: sprintf(buf, "C");
 "161
-{
-[; ;LCD.c: 162: LCDcmd(0x8A);
-"162
-[e ( _LCDcmd (1 -> -> 138 `i `uc ]
-[; ;LCD.c: 163: sprintf(buf, "C");
-"163
 [e ( _sprintf (1 , &U _buf :s 6C ]
-[; ;LCD.c: 164: LCDstr(buf);
+[; ;LCD.c: 162: LCDstr(buf);
+"162
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 163: LCDcmd(0x9A);
+"163
+[e ( _LCDcmd (1 -> -> 154 `i `uc ]
 "164
-[e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 165: LCDcmd(0x9A);
-"165
-[e ( _LCDcmd (1 -> -> 154 `i `uc ]
-"166
 }
-[; ;LCD.c: 166: }
+[; ;LCD.c: 164: }
 [e $U 1767  ]
-"167
+"165
 [e :U 1766 ]
-[; ;LCD.c: 167: else if (ctl==2)
+[; ;LCD.c: 165: else if (ctl==2)
 [e $ ! == -> _ctl `i -> 2 `i 1768  ]
-[; ;LCD.c: 168: {
+[; ;LCD.c: 166: {
+"166
+{
+[; ;LCD.c: 167: LCDcmd(0x8A);
+"167
+[e ( _LCDcmd (1 -> -> 138 `i `uc ]
+[; ;LCD.c: 168: sprintf(buf, "T");
 "168
-{
-[; ;LCD.c: 169: LCDcmd(0x8A);
-"169
-[e ( _LCDcmd (1 -> -> 138 `i `uc ]
-[; ;LCD.c: 170: sprintf(buf, "T");
-"170
 [e ( _sprintf (1 , &U _buf :s 7C ]
-[; ;LCD.c: 171: LCDstr(buf);
+[; ;LCD.c: 169: LCDstr(buf);
+"169
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 170: LCDcmd(0x9A);
+"170
+[e ( _LCDcmd (1 -> -> 154 `i `uc ]
 "171
-[e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 172: LCDcmd(0x9A);
-"172
-[e ( _LCDcmd (1 -> -> 154 `i `uc ]
-"173
 }
-[; ;LCD.c: 173: }
+[; ;LCD.c: 171: }
 [e $U 1769  ]
-"174
+"172
 [e :U 1768 ]
-[; ;LCD.c: 174: else
-[; ;LCD.c: 175: {
+[; ;LCD.c: 172: else if (ctl== 3)
+[e $ ! == -> _ctl `i -> 3 `i 1770  ]
+[; ;LCD.c: 173: {
+"173
+{
+[; ;LCD.c: 174: LCDcmd(0x8A);
+"174
+[e ( _LCDcmd (1 -> -> 138 `i `uc ]
+[; ;LCD.c: 175: sprintf(buf, "L");
 "175
-{
-[; ;LCD.c: 176: LCDcmd(0x8A);
-"176
-[e ( _LCDcmd (1 -> -> 138 `i `uc ]
-[; ;LCD.c: 177: sprintf(buf, "L");
-"177
 [e ( _sprintf (1 , &U _buf :s 8C ]
-[; ;LCD.c: 178: LCDstr(buf);
-"178
+[; ;LCD.c: 176: LCDstr(buf);
+"176
 [e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 179: LCDcmd(0x9A);
-"179
+[; ;LCD.c: 177: LCDcmd(0x9A);
+"177
 [e ( _LCDcmd (1 -> -> 154 `i `uc ]
+"178
+}
+[; ;LCD.c: 178: }
+[e $U 1771  ]
+"179
+[e :U 1770 ]
+[; ;LCD.c: 179: else
+[; ;LCD.c: 180: {
 "180
-}
-[e :U 1769 ]
-[e :U 1767 ]
-"182
-}
-[; ;LCD.c: 180: }
-[; ;LCD.c: 182: }
-[e $U 1770  ]
-"183
-[e :U 1765 ]
-[; ;LCD.c: 183: else
-[; ;LCD.c: 184: {
-"184
 {
-[; ;LCD.c: 185: LCDcmd(0x80);
-"185
-[e ( _LCDcmd (1 -> -> 128 `i `uc ]
-[; ;LCD.c: 186: sprintf(buf, "%02d:%02d:%02d", h,m,s);
-"186
-[e ( _sprintf (1 , , , (. , &U _buf :s 9C -> _h `i -> _m `i -> _s `i ]
-[; ;LCD.c: 187: LCDstr(buf);
-"187
-[e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 189: LCDcmd(0x8A);
-"189
+[; ;LCD.c: 181: LCDcmd(0x8A);
+"181
 [e ( _LCDcmd (1 -> -> 138 `i `uc ]
-[; ;LCD.c: 190: sprintf(buf, "CTL");
-"190
-[e ( _sprintf (1 , &U _buf :s 10C ]
-[; ;LCD.c: 191: LCDstr(buf);
-"191
+[; ;LCD.c: 182: sprintf(buf, " ");
+"182
+[e ( _sprintf (1 , &U _buf :s 9C ]
+[; ;LCD.c: 183: LCDstr(buf);
+"183
 [e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 193: LCDcmd(0xc0);
-"193
-[e ( _LCDcmd (1 -> -> 192 `i `uc ]
-[; ;LCD.c: 194: sprintf(buf, "%02d C", temperature);
-"194
-[e ( _sprintf (1 , (. , &U _buf :s 11C -> _temperature `i ]
-[; ;LCD.c: 195: LCDstr(buf);
-"195
-[e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 197: LCDcmd(0xce);
-"197
-[e ( _LCDcmd (1 -> -> 206 `i `uc ]
-[; ;LCD.c: 198: sprintf(buf, "L%01d", luminosity_alarm);
-"198
-[e ( _sprintf (1 , (. , &U _buf :s 12C -> _luminosity_alarm `i ]
-[; ;LCD.c: 199: LCDstr(buf);
-"199
-[e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 201: if (state ==1)
-"201
-[e $ ! == -> _state `i -> 1 `i 1771  ]
-[; ;LCD.c: 202: {
-"202
-{
-[; ;LCD.c: 203: LCDcmd(0x81);
-"203
-[e ( _LCDcmd (1 -> -> 129 `i `uc ]
-"204
+[; ;LCD.c: 184: LCDcmd(0x9A);
+"184
+[e ( _LCDcmd (1 -> -> 154 `i `uc ]
+"185
 }
 [e :U 1771 ]
-[; ;LCD.c: 204: }
-[; ;LCD.c: 205: if (state ==2)
-"205
-[e $ ! == -> _state `i -> 2 `i 1772  ]
-[; ;LCD.c: 206: {
-"206
-{
-[; ;LCD.c: 207: LCDcmd(0x84);
-"207
-[e ( _LCDcmd (1 -> -> 132 `i `uc ]
-"208
+[e :U 1769 ]
+[e :U 1767 ]
+"187
 }
-[e :U 1772 ]
-[; ;LCD.c: 208: }
-[; ;LCD.c: 209: if (state ==3)
-"209
-[e $ ! == -> _state `i -> 3 `i 1773  ]
-[; ;LCD.c: 210: {
-"210
+[; ;LCD.c: 185: }
+[; ;LCD.c: 187: }
+[e $U 1772  ]
+"188
+[e :U 1765 ]
+[; ;LCD.c: 188: else
+[; ;LCD.c: 189: {
+"189
 {
-[; ;LCD.c: 211: LCDcmd(0x87);
+[; ;LCD.c: 192: if (state ==1)
+"192
+[e $ ! == -> _state `i -> 1 `i 1773  ]
+[; ;LCD.c: 193: {
+"193
+{
+[; ;LCD.c: 194: LCDcmd(0x80);
+"194
+[e ( _LCDcmd (1 -> -> 128 `i `uc ]
+[; ;LCD.c: 195: sprintf(buf, "%02d:%02d:%02d", h,m,s);
+"195
+[e ( _sprintf (1 , , , (. , &U _buf :s 10C -> _h `i -> _m `i -> _s `i ]
+[; ;LCD.c: 196: LCDstr(buf);
+"196
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 198: LCDcmd(0x8A);
+"198
+[e ( _LCDcmd (1 -> -> 138 `i `uc ]
+[; ;LCD.c: 199: sprintf(buf, "CTL");
+"199
+[e ( _sprintf (1 , &U _buf :s 11C ]
+[; ;LCD.c: 200: LCDstr(buf);
+"200
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 202: LCDcmd(0xc0);
+"202
+[e ( _LCDcmd (1 -> -> 192 `i `uc ]
+[; ;LCD.c: 203: sprintf(buf, "%02d C", temperature);
+"203
+[e ( _sprintf (1 , (. , &U _buf :s 12C -> _temperature `i ]
+[; ;LCD.c: 204: LCDstr(buf);
+"204
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 206: LCDcmd(0xce);
+"206
+[e ( _LCDcmd (1 -> -> 206 `i `uc ]
+[; ;LCD.c: 207: sprintf(buf, "L%01d", luminosity);
+"207
+[e ( _sprintf (1 , (. , &U _buf :s 13C -> _luminosity `i ]
+[; ;LCD.c: 208: LCDstr(buf);
+"208
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 209: LCDcmd(0x81);
+"209
+[e ( _LCDcmd (1 -> -> 129 `i `uc ]
 "211
-[e ( _LCDcmd (1 -> -> 135 `i `uc ]
-"212
 }
 [e :U 1773 ]
-[; ;LCD.c: 212: }
-[; ;LCD.c: 215: if (state ==4)
+[; ;LCD.c: 211: }
+[; ;LCD.c: 212: if (state ==2)
+"212
+[e $ ! == -> _state `i -> 2 `i 1774  ]
+[; ;LCD.c: 213: {
+"213
+{
+[; ;LCD.c: 214: LCDcmd(0x80);
+"214
+[e ( _LCDcmd (1 -> -> 128 `i `uc ]
+[; ;LCD.c: 215: sprintf(buf, "%02d:%02d:%02d", h,m,s);
 "215
-[e $ ! == -> _state `i -> 4 `i 1774  ]
-[; ;LCD.c: 216: {
+[e ( _sprintf (1 , , , (. , &U _buf :s 14C -> _h `i -> _m `i -> _s `i ]
+[; ;LCD.c: 216: LCDstr(buf);
 "216
-{
-[; ;LCD.c: 217: LCDcmd(0x80);
-"217
-[e ( _LCDcmd (1 -> -> 128 `i `uc ]
-[; ;LCD.c: 218: sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 218: LCDcmd(0x8A);
 "218
-[e ( _sprintf (1 , , , (. , &U _buf :s 13C -> _alah `i -> _alam `i -> _alas `i ]
-[; ;LCD.c: 219: LCDstr(buf);
-"219
-[e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 220: LCDcmd(0x8a);
-"220
 [e ( _LCDcmd (1 -> -> 138 `i `uc ]
-"221
-}
-[e :U 1774 ]
-[; ;LCD.c: 221: }
-[; ;LCD.c: 223: if (state ==5)
-"223
-[e $ ! == -> _state `i -> 5 `i 1775  ]
-[; ;LCD.c: 224: {
-"224
-{
-[; ;LCD.c: 225: LCDcmd(0x80);
-"225
-[e ( _LCDcmd (1 -> -> 128 `i `uc ]
-[; ;LCD.c: 226: sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);
-"226
-[e ( _sprintf (1 , , , (. , &U _buf :s 14C -> _alah `i -> _alam `i -> _alas `i ]
-[; ;LCD.c: 227: LCDstr(buf);
-"227
+[; ;LCD.c: 219: sprintf(buf, "CTL");
+"219
+[e ( _sprintf (1 , &U _buf :s 15C ]
+[; ;LCD.c: 220: LCDstr(buf);
+"220
 [e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 228: LCDcmd(0x81);
+[; ;LCD.c: 222: LCDcmd(0xc0);
+"222
+[e ( _LCDcmd (1 -> -> 192 `i `uc ]
+[; ;LCD.c: 223: sprintf(buf, "%02d C", temperature);
+"223
+[e ( _sprintf (1 , (. , &U _buf :s 16C -> _temperature `i ]
+[; ;LCD.c: 224: LCDstr(buf);
+"224
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 226: LCDcmd(0xce);
+"226
+[e ( _LCDcmd (1 -> -> 206 `i `uc ]
+[; ;LCD.c: 227: sprintf(buf, "L%01d", luminosity);
+"227
+[e ( _sprintf (1 , (. , &U _buf :s 17C -> _luminosity `i ]
+[; ;LCD.c: 228: LCDstr(buf);
 "228
-[e ( _LCDcmd (1 -> -> 129 `i `uc ]
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 229: LCDcmd(0x84);
+"229
+[e ( _LCDcmd (1 -> -> 132 `i `uc ]
 "230
 }
-[e :U 1775 ]
+[e :U 1774 ]
 [; ;LCD.c: 230: }
-[; ;LCD.c: 232: if (state ==6)
+[; ;LCD.c: 231: if (state ==3)
+"231
+[e $ ! == -> _state `i -> 3 `i 1775  ]
+[; ;LCD.c: 232: {
 "232
-[e $ ! == -> _state `i -> 6 `i 1776  ]
-[; ;LCD.c: 233: {
-"233
 {
-[; ;LCD.c: 234: LCDcmd(0x80);
-"234
+[; ;LCD.c: 233: LCDcmd(0x80);
+"233
 [e ( _LCDcmd (1 -> -> 128 `i `uc ]
-[; ;LCD.c: 235: sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);
+[; ;LCD.c: 234: sprintf(buf, "%02d:%02d:%02d", h,m,s);
+"234
+[e ( _sprintf (1 , , , (. , &U _buf :s 18C -> _h `i -> _m `i -> _s `i ]
+[; ;LCD.c: 235: LCDstr(buf);
 "235
-[e ( _sprintf (1 , , , (. , &U _buf :s 15C -> _alah `i -> _alam `i -> _alas `i ]
-[; ;LCD.c: 236: LCDstr(buf);
-"236
 [e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 237: LCDcmd(0x84);
+[; ;LCD.c: 237: LCDcmd(0x8A);
 "237
-[e ( _LCDcmd (1 -> -> 132 `i `uc ]
+[e ( _LCDcmd (1 -> -> 138 `i `uc ]
+[; ;LCD.c: 238: sprintf(buf, "CTL");
+"238
+[e ( _sprintf (1 , &U _buf :s 19C ]
+[; ;LCD.c: 239: LCDstr(buf);
 "239
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 241: LCDcmd(0xc0);
+"241
+[e ( _LCDcmd (1 -> -> 192 `i `uc ]
+[; ;LCD.c: 242: sprintf(buf, "%02d C", temperature);
+"242
+[e ( _sprintf (1 , (. , &U _buf :s 20C -> _temperature `i ]
+[; ;LCD.c: 243: LCDstr(buf);
+"243
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 245: LCDcmd(0xce);
+"245
+[e ( _LCDcmd (1 -> -> 206 `i `uc ]
+[; ;LCD.c: 246: sprintf(buf, "L%01d", luminosity);
+"246
+[e ( _sprintf (1 , (. , &U _buf :s 21C -> _luminosity `i ]
+[; ;LCD.c: 247: LCDstr(buf);
+"247
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 248: LCDcmd(0x87);
+"248
+[e ( _LCDcmd (1 -> -> 135 `i `uc ]
+"249
+}
+[e :U 1775 ]
+[; ;LCD.c: 249: }
+[; ;LCD.c: 252: if (state ==4)
+"252
+[e $ ! == -> _state `i -> 4 `i 1776  ]
+[; ;LCD.c: 253: {
+"253
+{
+[; ;LCD.c: 254: LCDcmd(0x8A);
+"254
+[e ( _LCDcmd (1 -> -> 138 `i `uc ]
+[; ;LCD.c: 255: sprintf(buf, "CTL");
+"255
+[e ( _sprintf (1 , &U _buf :s 22C ]
+[; ;LCD.c: 256: LCDstr(buf);
+"256
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 258: LCDcmd(0xc0);
+"258
+[e ( _LCDcmd (1 -> -> 192 `i `uc ]
+[; ;LCD.c: 259: sprintf(buf, "%02d C", temperature);
+"259
+[e ( _sprintf (1 , (. , &U _buf :s 23C -> _temperature `i ]
+[; ;LCD.c: 260: LCDstr(buf);
+"260
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 262: LCDcmd(0xce);
+"262
+[e ( _LCDcmd (1 -> -> 206 `i `uc ]
+[; ;LCD.c: 263: sprintf(buf, "L%01d", luminosity);
+"263
+[e ( _sprintf (1 , (. , &U _buf :s 24C -> _luminosity `i ]
+[; ;LCD.c: 264: LCDstr(buf);
+"264
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 265: LCDcmd(0x80);
+"265
+[e ( _LCDcmd (1 -> -> 128 `i `uc ]
+[; ;LCD.c: 266: sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);
+"266
+[e ( _sprintf (1 , , , (. , &U _buf :s 25C -> _alah `i -> _alam `i -> _alas `i ]
+[; ;LCD.c: 267: LCDstr(buf);
+"267
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 268: LCDcmd(0x8a);
+"268
+[e ( _LCDcmd (1 -> -> 138 `i `uc ]
+"269
 }
 [e :U 1776 ]
-[; ;LCD.c: 239: }
-[; ;LCD.c: 241: if (state ==7)
-"241
-[e $ ! == -> _state `i -> 7 `i 1777  ]
-[; ;LCD.c: 242: {
-"242
-{
-[; ;LCD.c: 243: LCDcmd(0x80);
-"243
-[e ( _LCDcmd (1 -> -> 128 `i `uc ]
-[; ;LCD.c: 244: sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);
-"244
-[e ( _sprintf (1 , , , (. , &U _buf :s 16C -> _alah `i -> _alam `i -> _alas `i ]
-[; ;LCD.c: 245: LCDstr(buf);
-"245
-[e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 246: LCDcmd(0x87);
-"246
-[e ( _LCDcmd (1 -> -> 135 `i `uc ]
-"248
-}
-[e :U 1777 ]
-[; ;LCD.c: 248: }
-[; ;LCD.c: 251: if (state ==8)
-"251
-[e $ ! == -> _state `i -> 8 `i 1778  ]
-[; ;LCD.c: 252: {
-"252
-{
-[; ;LCD.c: 253: LCDcmd(0xc0);
-"253
-[e ( _LCDcmd (1 -> -> 192 `i `uc ]
-[; ;LCD.c: 254: sprintf(buf, "%02d C", temperature_alarm);
-"254
-[e ( _sprintf (1 , (. , &U _buf :s 17C -> _temperature_alarm `i ]
-[; ;LCD.c: 255: LCDstr(buf);
-"255
-[e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 256: LCDcmd(0x8b);
-"256
-[e ( _LCDcmd (1 -> -> 139 `i `uc ]
-"257
-}
-[e :U 1778 ]
-[; ;LCD.c: 257: }
-[; ;LCD.c: 261: if (state ==9)
-"261
-[e $ ! == -> _state `i -> 9 `i 1779  ]
-[; ;LCD.c: 262: {
-"262
-{
-[; ;LCD.c: 263: LCDcmd(0xc0);
-"263
-[e ( _LCDcmd (1 -> -> 192 `i `uc ]
-[; ;LCD.c: 264: sprintf(buf, "%02d C", temperature_alarm);
-"264
-[e ( _sprintf (1 , (. , &U _buf :s 18C -> _temperature_alarm `i ]
-[; ;LCD.c: 265: LCDstr(buf);
-"265
-[e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 266: LCDcmd(0xc1);
-"266
-[e ( _LCDcmd (1 -> -> 193 `i `uc ]
-"267
-}
-[e :U 1779 ]
-[; ;LCD.c: 267: }
-[; ;LCD.c: 271: if (state ==10)
+[; ;LCD.c: 269: }
+[; ;LCD.c: 271: if (state ==5)
 "271
-[e $ ! == -> _state `i -> 10 `i 1780  ]
+[e $ ! == -> _state `i -> 5 `i 1777  ]
 [; ;LCD.c: 272: {
 "272
 {
-[; ;LCD.c: 273: LCDcmd(0xce);
+[; ;LCD.c: 273: LCDcmd(0x8A);
 "273
-[e ( _LCDcmd (1 -> -> 206 `i `uc ]
-[; ;LCD.c: 274: sprintf(buf, "L%01d", luminosity_alarm);
+[e ( _LCDcmd (1 -> -> 138 `i `uc ]
+[; ;LCD.c: 274: sprintf(buf, "CTL");
 "274
-[e ( _sprintf (1 , (. , &U _buf :s 19C -> _luminosity_alarm `i ]
+[e ( _sprintf (1 , &U _buf :s 26C ]
 [; ;LCD.c: 275: LCDstr(buf);
 "275
 [e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 276: LCDcmd(0x8c);
-"276
-[e ( _LCDcmd (1 -> -> 140 `i `uc ]
+[; ;LCD.c: 277: LCDcmd(0xc0);
 "277
+[e ( _LCDcmd (1 -> -> 192 `i `uc ]
+[; ;LCD.c: 278: sprintf(buf, "%02d C", temperature);
+"278
+[e ( _sprintf (1 , (. , &U _buf :s 27C -> _temperature `i ]
+[; ;LCD.c: 279: LCDstr(buf);
+"279
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 281: LCDcmd(0xce);
+"281
+[e ( _LCDcmd (1 -> -> 206 `i `uc ]
+[; ;LCD.c: 282: sprintf(buf, "L%01d", luminosity);
+"282
+[e ( _sprintf (1 , (. , &U _buf :s 28C -> _luminosity `i ]
+[; ;LCD.c: 283: LCDstr(buf);
+"283
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 284: LCDcmd(0x80);
+"284
+[e ( _LCDcmd (1 -> -> 128 `i `uc ]
+[; ;LCD.c: 285: sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);
+"285
+[e ( _sprintf (1 , , , (. , &U _buf :s 29C -> _alah `i -> _alam `i -> _alas `i ]
+[; ;LCD.c: 286: LCDstr(buf);
+"286
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 287: LCDcmd(0x81);
+"287
+[e ( _LCDcmd (1 -> -> 129 `i `uc ]
+"289
+}
+[e :U 1777 ]
+[; ;LCD.c: 289: }
+[; ;LCD.c: 291: if (state ==6)
+"291
+[e $ ! == -> _state `i -> 6 `i 1778  ]
+[; ;LCD.c: 292: {
+"292
+{
+[; ;LCD.c: 293: LCDcmd(0x8A);
+"293
+[e ( _LCDcmd (1 -> -> 138 `i `uc ]
+[; ;LCD.c: 294: sprintf(buf, "CTL");
+"294
+[e ( _sprintf (1 , &U _buf :s 30C ]
+[; ;LCD.c: 295: LCDstr(buf);
+"295
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 297: LCDcmd(0xc0);
+"297
+[e ( _LCDcmd (1 -> -> 192 `i `uc ]
+[; ;LCD.c: 298: sprintf(buf, "%02d C", temperature);
+"298
+[e ( _sprintf (1 , (. , &U _buf :s 31C -> _temperature `i ]
+[; ;LCD.c: 299: LCDstr(buf);
+"299
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 301: LCDcmd(0xce);
+"301
+[e ( _LCDcmd (1 -> -> 206 `i `uc ]
+[; ;LCD.c: 302: sprintf(buf, "L%01d", luminosity);
+"302
+[e ( _sprintf (1 , (. , &U _buf :s 32C -> _luminosity `i ]
+[; ;LCD.c: 303: LCDstr(buf);
+"303
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 304: LCDcmd(0x80);
+"304
+[e ( _LCDcmd (1 -> -> 128 `i `uc ]
+[; ;LCD.c: 305: sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);
+"305
+[e ( _sprintf (1 , , , (. , &U _buf :s 33C -> _alah `i -> _alam `i -> _alas `i ]
+[; ;LCD.c: 306: LCDstr(buf);
+"306
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 307: LCDcmd(0x84);
+"307
+[e ( _LCDcmd (1 -> -> 132 `i `uc ]
+"309
+}
+[e :U 1778 ]
+[; ;LCD.c: 309: }
+[; ;LCD.c: 311: if (state ==7)
+"311
+[e $ ! == -> _state `i -> 7 `i 1779  ]
+[; ;LCD.c: 312: {
+"312
+{
+[; ;LCD.c: 313: LCDcmd(0x8A);
+"313
+[e ( _LCDcmd (1 -> -> 138 `i `uc ]
+[; ;LCD.c: 314: sprintf(buf, "CTL");
+"314
+[e ( _sprintf (1 , &U _buf :s 34C ]
+[; ;LCD.c: 315: LCDstr(buf);
+"315
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 317: LCDcmd(0xc0);
+"317
+[e ( _LCDcmd (1 -> -> 192 `i `uc ]
+[; ;LCD.c: 318: sprintf(buf, "%02d C", temperature);
+"318
+[e ( _sprintf (1 , (. , &U _buf :s 35C -> _temperature `i ]
+[; ;LCD.c: 319: LCDstr(buf);
+"319
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 321: LCDcmd(0xce);
+"321
+[e ( _LCDcmd (1 -> -> 206 `i `uc ]
+[; ;LCD.c: 322: sprintf(buf, "L%01d", luminosity);
+"322
+[e ( _sprintf (1 , (. , &U _buf :s 36C -> _luminosity `i ]
+[; ;LCD.c: 323: LCDstr(buf);
+"323
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 324: LCDcmd(0x81);
+"324
+[e ( _LCDcmd (1 -> -> 129 `i `uc ]
+[; ;LCD.c: 325: LCDcmd(0x80);
+"325
+[e ( _LCDcmd (1 -> -> 128 `i `uc ]
+[; ;LCD.c: 326: sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);
+"326
+[e ( _sprintf (1 , , , (. , &U _buf :s 37C -> _alah `i -> _alam `i -> _alas `i ]
+[; ;LCD.c: 327: LCDstr(buf);
+"327
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 328: LCDcmd(0x87);
+"328
+[e ( _LCDcmd (1 -> -> 135 `i `uc ]
+"330
+}
+[e :U 1779 ]
+[; ;LCD.c: 330: }
+[; ;LCD.c: 333: if (state ==8)
+"333
+[e $ ! == -> _state `i -> 8 `i 1780  ]
+[; ;LCD.c: 334: {
+"334
+{
+[; ;LCD.c: 335: LCDcmd(0x80);
+"335
+[e ( _LCDcmd (1 -> -> 128 `i `uc ]
+[; ;LCD.c: 336: sprintf(buf, "%02d:%02d:%02d", h,m,s);
+"336
+[e ( _sprintf (1 , , , (. , &U _buf :s 38C -> _h `i -> _m `i -> _s `i ]
+[; ;LCD.c: 337: LCDstr(buf);
+"337
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 339: LCDcmd(0x8A);
+"339
+[e ( _LCDcmd (1 -> -> 138 `i `uc ]
+[; ;LCD.c: 340: sprintf(buf, "CTL");
+"340
+[e ( _sprintf (1 , &U _buf :s 39C ]
+[; ;LCD.c: 341: LCDstr(buf);
+"341
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 343: LCDcmd(0xce);
+"343
+[e ( _LCDcmd (1 -> -> 206 `i `uc ]
+[; ;LCD.c: 344: sprintf(buf, "L%01d", luminosity);
+"344
+[e ( _sprintf (1 , (. , &U _buf :s 40C -> _luminosity `i ]
+[; ;LCD.c: 345: LCDstr(buf);
+"345
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 346: LCDcmd(0x81);
+"346
+[e ( _LCDcmd (1 -> -> 129 `i `uc ]
+[; ;LCD.c: 348: LCDcmd(0xc0);
+"348
+[e ( _LCDcmd (1 -> -> 192 `i `uc ]
+[; ;LCD.c: 349: sprintf(buf, "%02d C", temperature_alarm);
+"349
+[e ( _sprintf (1 , (. , &U _buf :s 41C -> _temperature_alarm `i ]
+[; ;LCD.c: 350: LCDstr(buf);
+"350
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 351: LCDcmd(0x8b);
+"351
+[e ( _LCDcmd (1 -> -> 139 `i `uc ]
+"352
 }
 [e :U 1780 ]
-[; ;LCD.c: 277: }
-[; ;LCD.c: 280: if (state ==11)
-"280
-[e $ ! == -> _state `i -> 11 `i 1781  ]
-[; ;LCD.c: 281: {
-"281
+[; ;LCD.c: 352: }
+[; ;LCD.c: 356: if (state ==9)
+"356
+[e $ ! == -> _state `i -> 9 `i 1781  ]
+[; ;LCD.c: 357: {
+"357
 {
-[; ;LCD.c: 282: LCDcmd(0xce);
-"282
-[e ( _LCDcmd (1 -> -> 206 `i `uc ]
-[; ;LCD.c: 283: sprintf(buf, "L%01d", luminosity_alarm);
-"283
-[e ( _sprintf (1 , (. , &U _buf :s 20C -> _luminosity_alarm `i ]
-[; ;LCD.c: 284: LCDstr(buf);
-"284
+[; ;LCD.c: 358: LCDcmd(0x80);
+"358
+[e ( _LCDcmd (1 -> -> 128 `i `uc ]
+[; ;LCD.c: 359: sprintf(buf, "%02d:%02d:%02d", h,m,s);
+"359
+[e ( _sprintf (1 , , , (. , &U _buf :s 42C -> _h `i -> _m `i -> _s `i ]
+[; ;LCD.c: 360: LCDstr(buf);
+"360
 [e ( _LCDstr (1 &U _buf ]
-[; ;LCD.c: 285: LCDcmd(0xcf);
-"285
-[e ( _LCDcmd (1 -> -> 207 `i `uc ]
-"286
+[; ;LCD.c: 362: LCDcmd(0x8A);
+"362
+[e ( _LCDcmd (1 -> -> 138 `i `uc ]
+[; ;LCD.c: 363: sprintf(buf, "CTL");
+"363
+[e ( _sprintf (1 , &U _buf :s 43C ]
+[; ;LCD.c: 364: LCDstr(buf);
+"364
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 366: LCDcmd(0xce);
+"366
+[e ( _LCDcmd (1 -> -> 206 `i `uc ]
+[; ;LCD.c: 367: sprintf(buf, "L%01d", luminosity);
+"367
+[e ( _sprintf (1 , (. , &U _buf :s 44C -> _luminosity `i ]
+[; ;LCD.c: 368: LCDstr(buf);
+"368
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 369: LCDcmd(0x81);
+"369
+[e ( _LCDcmd (1 -> -> 129 `i `uc ]
+[; ;LCD.c: 371: LCDcmd(0xc0);
+"371
+[e ( _LCDcmd (1 -> -> 192 `i `uc ]
+[; ;LCD.c: 372: sprintf(buf, "%02d C", temperature_alarm);
+"372
+[e ( _sprintf (1 , (. , &U _buf :s 45C -> _temperature_alarm `i ]
+[; ;LCD.c: 373: LCDstr(buf);
+"373
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 374: LCDcmd(0xc1);
+"374
+[e ( _LCDcmd (1 -> -> 193 `i `uc ]
+"375
 }
 [e :U 1781 ]
-[; ;LCD.c: 286: }
-[; ;LCD.c: 288: if (state ==12)
-"288
-[e $ ! == -> _state `i -> 12 `i 1782  ]
-[; ;LCD.c: 289: {
-"289
+[; ;LCD.c: 375: }
+[; ;LCD.c: 379: if (state ==10)
+"379
+[e $ ! == -> _state `i -> 10 `i 1782  ]
+[; ;LCD.c: 380: {
+"380
 {
-[; ;LCD.c: 290: LCDcmd(0x0f);
-"290
-[e ( _LCDcmd (1 -> -> 15 `i `uc ]
-"291
+[; ;LCD.c: 381: LCDcmd(0x80);
+"381
+[e ( _LCDcmd (1 -> -> 128 `i `uc ]
+[; ;LCD.c: 382: sprintf(buf, "%02d:%02d:%02d", h,m,s);
+"382
+[e ( _sprintf (1 , , , (. , &U _buf :s 46C -> _h `i -> _m `i -> _s `i ]
+[; ;LCD.c: 383: LCDstr(buf);
+"383
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 385: LCDcmd(0x8A);
+"385
+[e ( _LCDcmd (1 -> -> 138 `i `uc ]
+[; ;LCD.c: 386: sprintf(buf, "CTL");
+"386
+[e ( _sprintf (1 , &U _buf :s 47C ]
+[; ;LCD.c: 387: LCDstr(buf);
+"387
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 389: LCDcmd(0xc0);
+"389
+[e ( _LCDcmd (1 -> -> 192 `i `uc ]
+[; ;LCD.c: 390: sprintf(buf, "%02d C", temperature);
+"390
+[e ( _sprintf (1 , (. , &U _buf :s 48C -> _temperature `i ]
+[; ;LCD.c: 391: LCDstr(buf);
+"391
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 393: LCDcmd(0xce);
+"393
+[e ( _LCDcmd (1 -> -> 206 `i `uc ]
+[; ;LCD.c: 394: sprintf(buf, "L%01d", luminosity_alarm);
+"394
+[e ( _sprintf (1 , (. , &U _buf :s 49C -> _luminosity_alarm `i ]
+[; ;LCD.c: 395: LCDstr(buf);
+"395
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 396: LCDcmd(0x8c);
+"396
+[e ( _LCDcmd (1 -> -> 140 `i `uc ]
+"397
 }
 [e :U 1782 ]
-"292
+[; ;LCD.c: 397: }
+[; ;LCD.c: 400: if (state ==11)
+"400
+[e $ ! == -> _state `i -> 11 `i 1783  ]
+[; ;LCD.c: 401: {
+"401
+{
+[; ;LCD.c: 402: LCDcmd(0x80);
+"402
+[e ( _LCDcmd (1 -> -> 128 `i `uc ]
+[; ;LCD.c: 403: sprintf(buf, "%02d:%02d:%02d", h,m,s);
+"403
+[e ( _sprintf (1 , , , (. , &U _buf :s 50C -> _h `i -> _m `i -> _s `i ]
+[; ;LCD.c: 404: LCDstr(buf);
+"404
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 406: LCDcmd(0x8A);
+"406
+[e ( _LCDcmd (1 -> -> 138 `i `uc ]
+[; ;LCD.c: 407: sprintf(buf, "CTL");
+"407
+[e ( _sprintf (1 , &U _buf :s 51C ]
+[; ;LCD.c: 408: LCDstr(buf);
+"408
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 410: LCDcmd(0xc0);
+"410
+[e ( _LCDcmd (1 -> -> 192 `i `uc ]
+[; ;LCD.c: 411: sprintf(buf, "%02d C", temperature);
+"411
+[e ( _sprintf (1 , (. , &U _buf :s 52C -> _temperature `i ]
+[; ;LCD.c: 412: LCDstr(buf);
+"412
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 414: LCDcmd(0xce);
+"414
+[e ( _LCDcmd (1 -> -> 206 `i `uc ]
+[; ;LCD.c: 415: sprintf(buf, "L%01d", luminosity_alarm);
+"415
+[e ( _sprintf (1 , (. , &U _buf :s 53C -> _luminosity_alarm `i ]
+[; ;LCD.c: 416: LCDstr(buf);
+"416
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 417: LCDcmd(0xcf);
+"417
+[e ( _LCDcmd (1 -> -> 207 `i `uc ]
+"418
 }
-[e :U 1770 ]
-[; ;LCD.c: 291: }
-[; ;LCD.c: 292: }
-[; ;LCD.c: 293: return(1);
-"293
+[e :U 1783 ]
+[; ;LCD.c: 418: }
+[; ;LCD.c: 420: if (state ==12)
+"420
+[e $ ! == -> _state `i -> 12 `i 1784  ]
+[; ;LCD.c: 421: {
+"421
+{
+[; ;LCD.c: 422: LCDcmd(0x8A);
+"422
+[e ( _LCDcmd (1 -> -> 138 `i `uc ]
+[; ;LCD.c: 423: sprintf(buf, "   ");
+"423
+[e ( _sprintf (1 , &U _buf :s 54C ]
+[; ;LCD.c: 424: LCDstr(buf);
+"424
+[e ( _LCDstr (1 &U _buf ]
+[; ;LCD.c: 427: LCDcmd(0x8f);
+"427
+[e ( _LCDcmd (1 -> -> 143 `i `uc ]
+"430
+}
+[e :U 1784 ]
+"431
+}
+[e :U 1772 ]
+[; ;LCD.c: 430: }
+[; ;LCD.c: 431: }
+[; ;LCD.c: 432: return(1);
+"432
 [e ) -> -> 1 `i `uc ]
 [e $UE 1762  ]
-[; ;LCD.c: 294: }
-"294
+[; ;LCD.c: 433: }
+"433
 [e :UE 1762 ]
 }
-"296
+"436
 [v _lumin `(uc ~T0 @X0 1 ef ]
-"297
+"437
 {
-[; ;LCD.c: 296: unsigned char lumin(void)
-[; ;LCD.c: 297: {
+[; ;LCD.c: 436: unsigned char lumin(void)
+[; ;LCD.c: 437: {
 [e :U _lumin ]
 [f ]
-"298
+"438
 [v _luminosity `us ~T0 @X0 1 a ]
-[; ;LCD.c: 298: unsigned short luminosity;
-[; ;LCD.c: 299: ADCC_Initialize();
-"299
+[; ;LCD.c: 438: unsigned short luminosity;
+[; ;LCD.c: 439: ADCC_Initialize();
+"439
 [e ( _ADCC_Initialize ..  ]
-[; ;LCD.c: 300: ADCC_StartConversion(CH_0);
-"300
+[; ;LCD.c: 440: ADCC_StartConversion(CH_0);
+"440
 [e ( _ADCC_StartConversion (1 . `E12264 0 ]
-[; ;LCD.c: 301: luminosity = 0x0000;
-"301
+[; ;LCD.c: 441: luminosity = 0x0000;
+"441
 [e = _luminosity -> -> 0 `i `us ]
-[; ;LCD.c: 302: luminosity = ADCC_GetConversionResult();
-"302
+[; ;LCD.c: 442: luminosity = ADCC_GetConversionResult();
+"442
 [e = _luminosity -> ( _ADCC_GetConversionResult ..  `us ]
-[; ;LCD.c: 303: luminosity = luminosity << 6;
-"303
+[; ;LCD.c: 443: luminosity = luminosity << 6;
+"443
 [e = _luminosity -> << -> _luminosity `ui -> 6 `i `us ]
-[; ;LCD.c: 304: luminosity = luminosity >>13;
-"304
+[; ;LCD.c: 444: luminosity = luminosity >>13;
+"444
 [e = _luminosity -> >> -> _luminosity `ui -> 13 `i `us ]
-[; ;LCD.c: 305: return(luminosity);
-"305
+[; ;LCD.c: 445: return(luminosity);
+"445
 [e ) -> _luminosity `uc ]
-[e $UE 1783  ]
-[; ;LCD.c: 306: }
-"306
-[e :UE 1783 ]
+[e $UE 1785  ]
+[; ;LCD.c: 446: }
+"446
+[e :UE 1785 ]
 }
 [p f _sprintf 8421508 ]
 [a 3C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 0 ]
-[a 9C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 0 ]
-[a 13C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 0 ]
+[a 10C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 0 ]
 [a 14C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 0 ]
-[a 15C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 0 ]
-[a 16C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 0 ]
+[a 18C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 0 ]
+[a 25C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 0 ]
+[a 29C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 0 ]
+[a 33C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 0 ]
+[a 37C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 0 ]
+[a 38C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 0 ]
+[a 42C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 0 ]
+[a 46C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 0 ]
+[a 50C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 0 ]
 [a 5C 76 37 48 49 100 0 ]
-[a 12C 76 37 48 49 100 0 ]
-[a 19C 76 37 48 49 100 0 ]
-[a 20C 76 37 48 49 100 0 ]
+[a 13C 76 37 48 49 100 0 ]
+[a 17C 76 37 48 49 100 0 ]
+[a 21C 76 37 48 49 100 0 ]
+[a 24C 76 37 48 49 100 0 ]
+[a 28C 76 37 48 49 100 0 ]
+[a 32C 76 37 48 49 100 0 ]
+[a 36C 76 37 48 49 100 0 ]
+[a 40C 76 37 48 49 100 0 ]
+[a 44C 76 37 48 49 100 0 ]
+[a 49C 76 37 48 49 100 0 ]
+[a 53C 76 37 48 49 100 0 ]
 [a 2C 97 0 ]
 [a 7C 84 0 ]
-[a 10C 67 84 76 0 ]
+[a 11C 67 84 76 0 ]
+[a 15C 67 84 76 0 ]
+[a 19C 67 84 76 0 ]
+[a 22C 67 84 76 0 ]
+[a 26C 67 84 76 0 ]
+[a 30C 67 84 76 0 ]
+[a 34C 67 84 76 0 ]
+[a 39C 67 84 76 0 ]
+[a 43C 67 84 76 0 ]
+[a 47C 67 84 76 0 ]
+[a 51C 67 84 76 0 ]
 [a 8C 76 0 ]
 [a 4C 37 48 50 100 32 67 0 ]
-[a 11C 37 48 50 100 32 67 0 ]
-[a 17C 37 48 50 100 32 67 0 ]
-[a 18C 37 48 50 100 32 67 0 ]
+[a 12C 37 48 50 100 32 67 0 ]
+[a 16C 37 48 50 100 32 67 0 ]
+[a 20C 37 48 50 100 32 67 0 ]
+[a 23C 37 48 50 100 32 67 0 ]
+[a 27C 37 48 50 100 32 67 0 ]
+[a 31C 37 48 50 100 32 67 0 ]
+[a 35C 37 48 50 100 32 67 0 ]
+[a 41C 37 48 50 100 32 67 0 ]
+[a 45C 37 48 50 100 32 67 0 ]
+[a 48C 37 48 50 100 32 67 0 ]
+[a 52C 37 48 50 100 32 67 0 ]
 [a 6C 67 0 ]
 [a 1C 65 0 ]
+[a 54C 32 32 32 0 ]
+[a 9C 32 0 ]
