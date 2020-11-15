@@ -1,5 +1,5 @@
 
-# 1 "main.c"
+# 1 "mcc_generated_files/adcc.c"
 
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16F1xxxx_DFP/1.4.119/xc8\pic\include\xc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -21036,12 +21036,6 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 192 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize (void);
-
-# 204
-void PIN_MANAGER_IOC(void);
-
 # 13 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdint.h"
 typedef signed char int8_t;
 
@@ -21127,6 +21121,109 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
+
+# 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
+typedef unsigned char bool;
+
+# 72 "mcc_generated_files/adcc.h"
+typedef uint16_t adc_result_t;
+
+# 89
+typedef enum
+{
+CH_0 = 0x0,
+channel_VSS = 0x3C,
+channel_Temp = 0x3D,
+channel_DAC1 = 0x3E,
+channel_FVR_buf1 = 0x3F
+} adcc_channel_t;
+
+# 130
+void ADCC_Initialize(void);
+
+# 159
+void ADCC_StartConversion(adcc_channel_t channel);
+
+# 189
+bool ADCC_IsConversionDone();
+
+# 221
+adc_result_t ADCC_GetConversionResult(void);
+
+# 252
+adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
+
+# 277
+void ADCC_StopConversion(void);
+
+# 304
+void ADCC_SetStopOnInterrupt(void);
+
+# 329
+void ADCC_DischargeSampleCapacitor(void);
+
+# 355
+void ADCC_LoadAcquisitionRegister(uint8_t);
+
+# 381
+void ADCC_SetPrechargeTime(uint8_t);
+
+# 406
+void ADCC_SetRepeatCount(uint8_t);
+
+# 434
+uint8_t ADCC_GetCurrentCountofConversions(void);
+
+# 458
+void ADCC_ClearAccumulator(void);
+
+# 483
+uint16_t ADCC_GetAccumulatorValue(void);
+
+# 511
+bool ADCC_HasAccumulatorOverflowed(void);
+
+# 536
+uint16_t ADCC_GetFilterValue(void);
+
+# 564
+uint16_t ADCC_GetPreviousResult(void);
+
+# 590
+void ADCC_DefineSetPoint(uint16_t);
+
+# 616
+void ADCC_SetUpperThreshold(uint16_t);
+
+# 642
+void ADCC_SetLowerThreshold(uint16_t);
+
+# 669
+uint16_t ADCC_GetErrorCalculation(void);
+
+# 696
+void ADCC_EnableDoubleSampling(void);
+
+# 720
+void ADCC_EnableContinuousConversion(void);
+
+# 744
+void ADCC_DisableContinuousConversion(void);
+
+# 772
+bool ADCC_HasErrorCrossedUpperThreshold(void);
+
+# 800
+bool ADCC_HasErrorCrossedLowerThreshold(void);
+
+# 827
+uint8_t ADCC_GetConversionStageStatus(void);
+
+# 192 "mcc_generated_files/pin_manager.h"
+void PIN_MANAGER_Initialize (void);
+
+# 204
+void PIN_MANAGER_IOC(void);
 
 # 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
 typedef unsigned char bool;
@@ -21248,103 +21345,6 @@ void (*i2c1_driver_i2cISR)(void);
 # 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
 typedef unsigned char bool;
 
-# 72 "mcc_generated_files/adcc.h"
-typedef uint16_t adc_result_t;
-
-# 89
-typedef enum
-{
-CH_0 = 0x0,
-channel_VSS = 0x3C,
-channel_Temp = 0x3D,
-channel_DAC1 = 0x3E,
-channel_FVR_buf1 = 0x3F
-} adcc_channel_t;
-
-# 130
-void ADCC_Initialize(void);
-
-# 159
-void ADCC_StartConversion(adcc_channel_t channel);
-
-# 189
-bool ADCC_IsConversionDone();
-
-# 221
-adc_result_t ADCC_GetConversionResult(void);
-
-# 252
-adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
-
-# 277
-void ADCC_StopConversion(void);
-
-# 304
-void ADCC_SetStopOnInterrupt(void);
-
-# 329
-void ADCC_DischargeSampleCapacitor(void);
-
-# 355
-void ADCC_LoadAcquisitionRegister(uint8_t);
-
-# 381
-void ADCC_SetPrechargeTime(uint8_t);
-
-# 406
-void ADCC_SetRepeatCount(uint8_t);
-
-# 434
-uint8_t ADCC_GetCurrentCountofConversions(void);
-
-# 458
-void ADCC_ClearAccumulator(void);
-
-# 483
-uint16_t ADCC_GetAccumulatorValue(void);
-
-# 511
-bool ADCC_HasAccumulatorOverflowed(void);
-
-# 536
-uint16_t ADCC_GetFilterValue(void);
-
-# 564
-uint16_t ADCC_GetPreviousResult(void);
-
-# 590
-void ADCC_DefineSetPoint(uint16_t);
-
-# 616
-void ADCC_SetUpperThreshold(uint16_t);
-
-# 642
-void ADCC_SetLowerThreshold(uint16_t);
-
-# 669
-uint16_t ADCC_GetErrorCalculation(void);
-
-# 696
-void ADCC_EnableDoubleSampling(void);
-
-# 720
-void ADCC_EnableContinuousConversion(void);
-
-# 744
-void ADCC_DisableContinuousConversion(void);
-
-# 772
-bool ADCC_HasErrorCrossedUpperThreshold(void);
-
-# 800
-bool ADCC_HasErrorCrossedLowerThreshold(void);
-
-# 827
-uint8_t ADCC_GetConversionStageStatus(void);
-
-# 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
-typedef unsigned char bool;
-
 # 99 "mcc_generated_files/memory.h"
 uint16_t FLASH_ReadWord(uint16_t flashAddr);
 
@@ -21408,515 +21408,235 @@ void OSCILLATOR_Initialize(void);
 # 99
 void PMD_Initialize(void);
 
-# 15 "LCD.h"
-void LCDsend(unsigned char c);
-unsigned char LCDrecv(unsigned char mode);
-void LCDsend2x4(unsigned char c, unsigned char mode);
-void LCDinit(void);
-void LCDcmd(unsigned char c);
-void LCDchar(unsigned char c);
-void LCDstr(unsigned char *p);
-int LCDbusy();
-bool lcd(unsigned char temperature, unsigned char luminosity, unsigned char alarm, unsigned char ctl, unsigned char h, unsigned char m, unsigned char s, unsigned char state, unsigned char temperature_alarm, unsigned char luminosity_alarm, unsigned char alah, unsigned char alam,unsigned char alas );
-unsigned char lumin(void);
-
-# 16 "main.h"
-typedef struct _log{
-uint8_t hour;
-uint8_t min;
-uint8_t sec;
-uint8_t temp;
-uint8_t lum;
-}log;
-
-# 37
-uint8_t PMON = 3;
-uint8_t TALA = 5;
-uint8_t ALAH = 12;
-uint8_t ALAM = 0;
-uint8_t ALAS = 0;
-uint8_t ALAT = 28;
-uint8_t ALAL = 4;
-uint8_t ALAF = 0;
-uint8_t CLKH = 0;
-uint8_t CLKM = 0;
-uint8_t CSUM = 0;
-
-log reg[25];
-
-
-uint8_t btn1State = 0;
-uint8_t btn2State = 0;
-
-
-void TMR0_callback(void);
-void save_register(unsigned char l, unsigned char c);
-void checkButtonS1(void);
-void checkButtonS2(void);
-unsigned char tsttc (void);
-
-
-void conf_clock_hh(void);
-void conf_clock_mm(void);
-void conf_clock_ss(void);
-void conf_alarm_hh(void);
-void conf_alarm_mm(void);
-void conf_alarm_ss(void);
-void conf_temp(void);
-void conf_lumin(void);
-void conf_alarm_flag(void);
-
-# 154 "I2C/i2c.h"
-void OpenI2C( unsigned char sync_mode, unsigned char slew );
-
-signed char WriteI2C( unsigned char data_out );
-
-signed char putsI2C( unsigned char *wrptr );
-
-unsigned char ReadI2C( void );
-
-# 281
-signed char WriteI2C( unsigned char data_out );
-
-signed char getsI2C( unsigned char *rdptr, unsigned char length );
-
-# 16 "config_mode.h"
-void conf_clock_hh(void);
-void conf_clock_mm(void);
-void conf_clock_ss(void);
-void conf_alarm_hh(void);
-void conf_alarm_mm(void);
-void conf_alarm_ss(void);
-void conf_temp(void);
-void conf_lumin(void);
-void conf_alarm_flag(void);
-
-# 7 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdlib.h"
-typedef unsigned short wchar_t;
-
-# 15
-typedef struct {
-int rem;
-int quot;
-} div_t;
-typedef struct {
-unsigned rem;
-unsigned quot;
-} udiv_t;
-typedef struct {
-long quot;
-long rem;
-} ldiv_t;
-typedef struct {
-unsigned long quot;
-unsigned long rem;
-} uldiv_t;
-
-# 65
-extern double atof(const char *);
-extern double strtod(const char *, const char **);
-extern int atoi(const char *);
-extern unsigned xtoi(const char *);
-extern long atol(const char *);
-
-# 73
-extern long strtol(const char *, char **, int);
-
-extern int rand(void);
-extern void srand(unsigned int);
-extern void * calloc(size_t, size_t);
-extern div_t div(int numer, int denom);
-extern udiv_t udiv(unsigned numer, unsigned denom);
-extern ldiv_t ldiv(long numer, long denom);
-extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
-
-# 85
-extern unsigned long _lrotl(unsigned long value, unsigned int shift);
-extern unsigned long _lrotr(unsigned long value, unsigned int shift);
-extern unsigned int _rotl(unsigned int value, unsigned int shift);
-extern unsigned int _rotr(unsigned int value, unsigned int shift);
-
-
-
-
-extern void * malloc(size_t);
-extern void free(void *);
-extern void * realloc(void *, size_t);
-
-# 104
-extern int atexit(void (*)(void));
-extern char * getenv(const char *);
-extern char ** environ;
-extern int system(char *);
-extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
-extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
-extern int abs(int);
-extern long labs(long);
-
-extern char * itoa(char * buf, int val, int base);
-extern char * utoa(char * buf, unsigned val, int base);
-
-
-
-
-extern char * ltoa(char * buf, long val, int base);
-extern char * ultoa(char * buf, unsigned long val, int base);
-
-extern char * ftoa(float f, int * status);
-
-# 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
-typedef unsigned char bool;
-
-# 59 "main.c"
-volatile uint16_t timer_flag = 0;
-
-# 181
-void main(void)
-{
-unsigned char c;
-unsigned char l;
-unsigned char hc;
-unsigned char lc;
-unsigned char c1;
-unsigned char c2;
-unsigned char buf[17];
-
-uint8_t state = 0;
-
-# 206
-SYSTEM_Initialize();
-
-
-TMR0_SetInterruptHandler(TMR0_callback);
-
-# 215
-(INTCONbits.GIE = 1);
-
-
-(INTCONbits.PEIE = 1);
-
-# 226
-i2c1_driver_open();
-TRISCbits.TRISC3 = 1;
-TRISCbits.TRISC4 = 1;
-WPUC3 = 1;
-WPUC4 = 1;
-
-
-unsigned char ctl=1;
-LCDinit();
-
-while (1)
+# 63 "mcc_generated_files/adcc.c"
+void ADCC_Initialize(void)
 {
 
-if (PMON != 0 && (timer_flag%PMON) == 0){
-c = tsttc();
-l = lumin();
+
+ADLTHL = 0x00;
+
+ADLTHH = 0x00;
+
+ADUTHL = 0x00;
+
+ADUTHH = 0x00;
+
+ADSTPTL = 0x00;
+
+ADSTPTH = 0x00;
+
+ADRPT = 0x00;
+
+ADPCH = 0x00;
+
+ADCAP = 0x00;
+
+ADCON1 = 0x00;
+
+ADCON2 = 0x00;
+
+ADCON3 = 0x00;
+
+ADSTAT = 0x00;
+
+ADREF = 0x00;
+
+ADACT = 0x00;
+
+ADCLK = 0x00;
+
+ADCON0 = 0x84;
+
+ADACQ = 0x00;
+
 
 }
-checkButtonS1();
-checkButtonS2();
 
-switch(state){
-case 0:
+void ADCC_StartConversion(adcc_channel_t channel)
+{
 
-if(btn1State == 1){
+ADPCH = channel;
 
-state = 1;
+
+ADCON0bits.ADON = 1;
+
+
+ADCON0bits.ADGO = 1;
 }
-break;
-case 1:
 
-if(btn2State == 1){
+bool ADCC_IsConversionDone()
+{
 
-conf_clock_hh();
-}else if(btn1State == 1){
-
-state = 2;
+return ((unsigned char)(!ADCON0bits.ADGO));
 }
-break;
-case 2:
-if(btn2State == 1){
 
-conf_clock_mm();
-}else if(btn1State == 1){
+adc_result_t ADCC_GetConversionResult(void)
+{
 
-state = 3;
+return ((adc_result_t)((ADRESH << 8) + ADRESL));
 }
-break;
-case 3:
-if(btn2State == 1){
 
-conf_clock_ss();
-}else if(btn1State == 1){
+adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel)
+{
 
-state = 4;
-}
-break;
-case 4:
-if(btn2State == 1){
+ADPCH = channel;
 
-state = 5;
-}else if(btn1State == 1){
 
-state = 8;
-}
-break;
-case 5:
-if(btn2State == 1){
+ADCON0bits.ADON = 1;
 
-conf_alarm_hh();
-}else if(btn1State == 1){
 
-state = 6;
-}
-break;
-case 6:
-if(btn2State == 1){
+ADCON0bits.ADCONT = 0;
 
-conf_alarm_mm();
-}else if(btn1State == 1){
 
-state = 7;
-}
-break;
-case 7:
-if(btn2State == 1){
+ADCON0bits.ADGO = 1;
 
-conf_alarm_ss();
-}else if(btn1State == 1){
 
-state = 8;
-}
-break;
-case 8:
-if(btn2State == 1){
+__nop();
 
-state = 9;
-}else if(btn1State == 1){
 
-state = 10;
-}
-break;
-case 9:
-if(btn2State == 1){
-
-conf_temp();
-}else if(btn1State == 1){
-
-state = 10;
-}
-break;
-case 10:
-if(btn2State == 1){
-
-state = 11;
-}else if(btn1State == 1){
-
-state = 12;
-}
-break;
-case 11:
-if(btn2State == 1){
-
-conf_lumin();
-}else if(btn1State == 1){
-
-state = 12;
-}
-break;
-case 12:
-if(btn2State == 1){
-
-conf_alarm_flag();
-}else if(btn1State == 1){
-
-state = 0;
-}
-break;
+while (ADCON0bits.ADGO)
+{
 }
 
 
 
-lcd(c, l, ALAF, ctl, CLKH, CLKM, (timer_flag%60), state, ALAT, ALAL, ALAH, ALAM, ALAS);
-}
-}
-
-void TMR0_callback(void){
-timer_flag++;
-if(timer_flag % 60 == 0){
-CLKM++;
-
-}
-if(CLKM % 60 == 0 && CLKM != 0){
-CLKH++;
-CLKH %= 24;
-CLKM = 0;
-
-DATAEE_WriteByte(159,CLKH);
-DATAEE_WriteByte(160,CLKM);
-
-}
+return ((adc_result_t)((ADRESH << 8) + ADRESL));
 }
 
+void ADCC_StopConversion(void)
+{
 
-void save_register(unsigned char l, unsigned char c){
-static uint16_t n = 0;
-log buf;
-buf.hour = CLKH;
-buf.min = CLKM;
-buf.sec = (timer_flag%60);
-buf.temp = c;
-buf.lum = l;
-reg[n] = buf;
-DATAEE_WriteByte(n++,buf.hour);
-DATAEE_WriteByte(n++,buf.min);
-DATAEE_WriteByte(n++,buf.sec);
-DATAEE_WriteByte(n++,buf.temp);
-DATAEE_WriteByte(n++,buf.lum);
-n = n % (5*25);
+ADCON0bits.ADGO = 0;
 }
 
-void checkButtonS1(void) {
-if (btn1State == 0) {
-if (PORTBbits.RB4 == 0) {
-_delay((unsigned long)((200)*(1000000/4000.0)));
-btn1State = 1;
-}
-} else if (PORTBbits.RB4 == 1) {
-btn1State = 0;
-}
+void ADCC_SetStopOnInterrupt(void)
+{
+
+ADCON3bits.ADSOI = 1;
 }
 
-void checkButtonS2(void) {
-if (btn2State == 0) {
-if (PORTCbits.RC5 == 0) {
-_delay((unsigned long)((200)*(1000000/4000.0)));
-btn2State = 1;
+void ADCC_DischargeSampleCapacitor(void)
+{
+
+ADPCH = 0x3c;
 }
 
-} else if (PORTCbits.RC5 == 1) {
-btn2State = 0;
-}
-}
+void ADCC_LoadAcquisitionRegister(uint8_t acquisitionValue)
+{
 
-# 435
-unsigned char tsttc (void){
-unsigned char value;
-do{
-while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-
-WriteI2C(0x9a | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x9a | 0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-value = ReadI2C(); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
-} while (!(value & 0x40));
-
-while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x9a | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x9a | 0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-value = ReadI2C(); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
-
-return value;
+ADACQ = acquisitionValue;
 }
 
+void ADCC_SetPrechargeTime(uint8_t prechargeTime)
+{
 
-
-
-void conf_clock_hh(void){
-if (CLKH == 23){
-CLKH = 0;
-}else{
-CLKH++;
+ADPRE = prechargeTime;
 }
 
-return;
+void ADCC_SetRepeatCount(uint8_t repeatCount)
+{
+
+ADRPT = repeatCount;
 }
 
-void conf_clock_mm(void){
-if (CLKM == 59){
-CLKM = 0;
-}else{
-CLKM++;
+uint8_t ADCC_GetCurrentCountofConversions(void)
+{
+
+return ADCNT;
 }
 
-return;
+void ADCC_ClearAccumulator(void)
+{
+
+ADCON2bits.ADACLR = 1;
 }
 
-void conf_clock_ss(void){
-timer_flag++;
-return;
+uint16_t ADCC_GetAccumulatorValue(void)
+{
+
+return ((uint16_t)((ADACCH << 8) + ADACCL));
 }
 
-void conf_alarm_hh(void){
-if (ALAH == 23){
-ALAH = 0;
-}else{
-ALAH++;
+bool ADCC_HasAccumulatorOverflowed(void)
+{
+
+return ADSTATbits.ADAOV;
 }
 
-return;
+uint16_t ADCC_GetFilterValue(void)
+{
+
+return ((uint16_t)((ADFLTRH << 8) + ADFLTRL));
 }
 
-void conf_alarm_mm(void){
-if (ALAM == 59){
-ALAM = 0;
-}else{
-ALAM++;
+uint16_t ADCC_GetPreviousResult(void)
+{
+
+return ((uint16_t)((ADPREVH << 8) + ADPREVL));
 }
 
-return;
+void ADCC_DefineSetPoint(uint16_t setPoint)
+{
+
+ADSTPTH = setPoint >> 8;
+ADSTPTL = setPoint;
 }
 
-void conf_alarm_ss(void){
-if (ALAS == 59){
-ALAS = 0;
-}else{
-ALAS++;
+void ADCC_SetUpperThreshold(uint16_t upperThreshold)
+{
+
+ADUTHH = upperThreshold >> 8;
+ADUTHL = upperThreshold;
 }
 
-return;
+void ADCC_SetLowerThreshold(uint16_t lowerThreshold)
+{
+
+ADLTHH = lowerThreshold >> 8;
+ADLTHL = lowerThreshold;
 }
 
-void conf_temp(void){
+uint16_t ADCC_GetErrorCalculation(void)
+{
 
-if(ALAT == 50){
-ALAT = 0;
-}else{
-ALAT++;
-}
-return;
+# 257
+return ((uint16_t)((ADERRH << 8) + ADERRL));
+
 }
 
+void ADCC_EnableDoubleSampling(void)
+{
 
-void conf_lumin(void){
-
-if(ALAL == 7){
-ALAL = 0;
-}else{
-ALAL++;
+ADCON1bits.ADDSEN = 1;
 }
 
-return;
+void ADCC_EnableContinuousConversion(void)
+{
+
+ADCON0bits.ADCONT = 1;
 }
 
-void conf_alarm_flag(void){
+void ADCC_DisableContinuousConversion(void)
+{
 
-if(ALAF == 0){
-ALAF = 1;
-}else{
-ALAF = 0;
+ADCON0bits.ADCONT = 0;
 }
 
-return;
+bool ADCC_HasErrorCrossedUpperThreshold(void)
+{
+
+return ADSTATbits.ADUTHR;
+}
+
+bool ADCC_HasErrorCrossedLowerThreshold(void)
+{
+
+return ADSTATbits.ADLTHR;
+}
+
+uint8_t ADCC_GetConversionStageStatus(void)
+{
+
+return ADSTATbits.ADSTAT;
 }
 

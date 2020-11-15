@@ -1,5 +1,5 @@
 
-# 1 "main.c"
+# 1 "mcc_generated_files/memory.c"
 
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16F1xxxx_DFP/1.4.119/xc8\pic\include\xc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -21036,11 +21036,8 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 192 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize (void);
-
-# 204
-void PIN_MANAGER_IOC(void);
+# 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
+typedef unsigned char bool;
 
 # 13 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdint.h"
 typedef signed char int8_t;
@@ -21128,223 +21125,6 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
-typedef unsigned char bool;
-
-# 4 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16F1xxxx_DFP/1.4.119/xc8\pic\include\__size_t.h"
-typedef unsigned size_t;
-
-# 7 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdarg.h"
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 43 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdio.h"
-struct __prbuf
-{
-char * ptr;
-void (* func)(char);
-};
-
-# 29 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\errno.h"
-extern int errno;
-
-# 12 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\conio.h"
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-# 23
-extern char * cgets(char *);
-extern void cputs(const char *);
-
-# 88 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdio.h"
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-
-
-# 180
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-
-# 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
-typedef unsigned char bool;
-
-# 33 "mcc_generated_files/i2c1_driver.h"
-typedef void (*interruptHandler)(void);
-
-
-inline void i2c1_driver_close(void);
-
-
-inline void mssp1_enableIRQ(void);
-inline __bit mssp1_IRQisEnabled(void);
-inline void mssp1_disableIRQ(void);
-inline void mssp1_clearIRQ(void);
-inline void mssp1_setIRQ(void);
-inline __bit mssp1_IRQisSet(void);
-inline void mssp1_waitForEvent(uint16_t*);
-
-
-__bit i2c1_driver_open(void);
-inline char i2c1_driver_getRXData(void);
-inline char i2c1_driver_getAddr(void);
-inline void i2c1_driver_setAddr(char addr);
-inline void i2c1_driver_setMask(char mask);
-inline void i2c1_driver_TXData(char d);
-inline void i2c1_driver_resetBus(void);
-inline void i2c1_driver_start(void);
-inline void i2c1_driver_restart(void);
-inline void i2c1_driver_stop(void);
-inline __bit i2c1_driver_isNACK(void);
-inline void i2c1_driver_startRX(void);
-inline void i2c1_driver_sendACK(void);
-inline void i2c1_driver_sendNACK(void);
-inline void i2c1_driver_clearBusCollision(void);
-
-__bit i2c1_driver_initSlaveHardware(void);
-inline void i2c1_driver_releaseClock(void);
-inline __bit i2c1_driver_isBufferFull(void);
-inline __bit i2c1_driver_isStart(void);
-inline __bit i2c1_driver_isStop(void);
-inline __bit i2c1_driver_isAddress(void);
-inline __bit i2c1_driver_isData(void);
-inline __bit i2c1_driver_isRead(void);
-inline __bit i2c1_driver_isWriteCollision(void);
-inline __bit i2c1_driver_isReceiveOverflow(void);
-
-inline void i2c1_driver_setBusCollisionISR(interruptHandler handler);
-inline void i2c1_driver_setI2cISR(interruptHandler handler);
-void (*i2c1_driver_busCollisionISR)(void);
-void (*i2c1_driver_i2cISR)(void);
-
-# 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
-typedef unsigned char bool;
-
-# 72 "mcc_generated_files/adcc.h"
-typedef uint16_t adc_result_t;
-
-# 89
-typedef enum
-{
-CH_0 = 0x0,
-channel_VSS = 0x3C,
-channel_Temp = 0x3D,
-channel_DAC1 = 0x3E,
-channel_FVR_buf1 = 0x3F
-} adcc_channel_t;
-
-# 130
-void ADCC_Initialize(void);
-
-# 159
-void ADCC_StartConversion(adcc_channel_t channel);
-
-# 189
-bool ADCC_IsConversionDone();
-
-# 221
-adc_result_t ADCC_GetConversionResult(void);
-
-# 252
-adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
-
-# 277
-void ADCC_StopConversion(void);
-
-# 304
-void ADCC_SetStopOnInterrupt(void);
-
-# 329
-void ADCC_DischargeSampleCapacitor(void);
-
-# 355
-void ADCC_LoadAcquisitionRegister(uint8_t);
-
-# 381
-void ADCC_SetPrechargeTime(uint8_t);
-
-# 406
-void ADCC_SetRepeatCount(uint8_t);
-
-# 434
-uint8_t ADCC_GetCurrentCountofConversions(void);
-
-# 458
-void ADCC_ClearAccumulator(void);
-
-# 483
-uint16_t ADCC_GetAccumulatorValue(void);
-
-# 511
-bool ADCC_HasAccumulatorOverflowed(void);
-
-# 536
-uint16_t ADCC_GetFilterValue(void);
-
-# 564
-uint16_t ADCC_GetPreviousResult(void);
-
-# 590
-void ADCC_DefineSetPoint(uint16_t);
-
-# 616
-void ADCC_SetUpperThreshold(uint16_t);
-
-# 642
-void ADCC_SetLowerThreshold(uint16_t);
-
-# 669
-uint16_t ADCC_GetErrorCalculation(void);
-
-# 696
-void ADCC_EnableDoubleSampling(void);
-
-# 720
-void ADCC_EnableContinuousConversion(void);
-
-# 744
-void ADCC_DisableContinuousConversion(void);
-
-# 772
-bool ADCC_HasErrorCrossedUpperThreshold(void);
-
-# 800
-bool ADCC_HasErrorCrossedLowerThreshold(void);
-
-# 827
-uint8_t ADCC_GetConversionStageStatus(void);
-
-# 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
-typedef unsigned char bool;
-
 # 99 "mcc_generated_files/memory.h"
 uint16_t FLASH_ReadWord(uint16_t flashAddr);
 
@@ -21363,560 +21143,157 @@ void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 # 248
 uint8_t DATAEE_ReadByte(uint16_t bAdd);
 
-# 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
-typedef unsigned char bool;
-
-# 106 "mcc_generated_files/tmr0.h"
-void TMR0_Initialize(void);
-
-# 135
-void TMR0_StartTimer(void);
-
-# 167
-void TMR0_StopTimer(void);
-
-# 202
-uint8_t TMR0_ReadTimer(void);
-
-# 241
-void TMR0_WriteTimer(uint8_t timerVal);
-
-# 278
-void TMR0_Reload(uint8_t periodVal);
-
-# 297
-void TMR0_ISR(void);
-
-# 315
-void TMR0_CallBack(void);
-
-# 333
-void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 351
-extern void (*TMR0_InterruptHandler)(void);
-
-# 369
-void TMR0_DefaultInterruptHandler(void);
-
-# 73 "mcc_generated_files/mcc.h"
-void SYSTEM_Initialize(void);
-
-# 86
-void OSCILLATOR_Initialize(void);
-
-# 99
-void PMD_Initialize(void);
-
-# 15 "LCD.h"
-void LCDsend(unsigned char c);
-unsigned char LCDrecv(unsigned char mode);
-void LCDsend2x4(unsigned char c, unsigned char mode);
-void LCDinit(void);
-void LCDcmd(unsigned char c);
-void LCDchar(unsigned char c);
-void LCDstr(unsigned char *p);
-int LCDbusy();
-bool lcd(unsigned char temperature, unsigned char luminosity, unsigned char alarm, unsigned char ctl, unsigned char h, unsigned char m, unsigned char s, unsigned char state, unsigned char temperature_alarm, unsigned char luminosity_alarm, unsigned char alah, unsigned char alam,unsigned char alas );
-unsigned char lumin(void);
-
-# 16 "main.h"
-typedef struct _log{
-uint8_t hour;
-uint8_t min;
-uint8_t sec;
-uint8_t temp;
-uint8_t lum;
-}log;
-
-# 37
-uint8_t PMON = 3;
-uint8_t TALA = 5;
-uint8_t ALAH = 12;
-uint8_t ALAM = 0;
-uint8_t ALAS = 0;
-uint8_t ALAT = 28;
-uint8_t ALAL = 4;
-uint8_t ALAF = 0;
-uint8_t CLKH = 0;
-uint8_t CLKM = 0;
-uint8_t CSUM = 0;
-
-log reg[25];
-
-
-uint8_t btn1State = 0;
-uint8_t btn2State = 0;
-
-
-void TMR0_callback(void);
-void save_register(unsigned char l, unsigned char c);
-void checkButtonS1(void);
-void checkButtonS2(void);
-unsigned char tsttc (void);
-
-
-void conf_clock_hh(void);
-void conf_clock_mm(void);
-void conf_clock_ss(void);
-void conf_alarm_hh(void);
-void conf_alarm_mm(void);
-void conf_alarm_ss(void);
-void conf_temp(void);
-void conf_lumin(void);
-void conf_alarm_flag(void);
-
-# 154 "I2C/i2c.h"
-void OpenI2C( unsigned char sync_mode, unsigned char slew );
-
-signed char WriteI2C( unsigned char data_out );
-
-signed char putsI2C( unsigned char *wrptr );
-
-unsigned char ReadI2C( void );
-
-# 281
-signed char WriteI2C( unsigned char data_out );
-
-signed char getsI2C( unsigned char *rdptr, unsigned char length );
-
-# 16 "config_mode.h"
-void conf_clock_hh(void);
-void conf_clock_mm(void);
-void conf_clock_ss(void);
-void conf_alarm_hh(void);
-void conf_alarm_mm(void);
-void conf_alarm_ss(void);
-void conf_temp(void);
-void conf_lumin(void);
-void conf_alarm_flag(void);
-
-# 7 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdlib.h"
-typedef unsigned short wchar_t;
-
-# 15
-typedef struct {
-int rem;
-int quot;
-} div_t;
-typedef struct {
-unsigned rem;
-unsigned quot;
-} udiv_t;
-typedef struct {
-long quot;
-long rem;
-} ldiv_t;
-typedef struct {
-unsigned long quot;
-unsigned long rem;
-} uldiv_t;
-
-# 65
-extern double atof(const char *);
-extern double strtod(const char *, const char **);
-extern int atoi(const char *);
-extern unsigned xtoi(const char *);
-extern long atol(const char *);
-
-# 73
-extern long strtol(const char *, char **, int);
-
-extern int rand(void);
-extern void srand(unsigned int);
-extern void * calloc(size_t, size_t);
-extern div_t div(int numer, int denom);
-extern udiv_t udiv(unsigned numer, unsigned denom);
-extern ldiv_t ldiv(long numer, long denom);
-extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
-
-# 85
-extern unsigned long _lrotl(unsigned long value, unsigned int shift);
-extern unsigned long _lrotr(unsigned long value, unsigned int shift);
-extern unsigned int _rotl(unsigned int value, unsigned int shift);
-extern unsigned int _rotr(unsigned int value, unsigned int shift);
-
-
-
-
-extern void * malloc(size_t);
-extern void free(void *);
-extern void * realloc(void *, size_t);
-
-# 104
-extern int atexit(void (*)(void));
-extern char * getenv(const char *);
-extern char ** environ;
-extern int system(char *);
-extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
-extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
-extern int abs(int);
-extern long labs(long);
-
-extern char * itoa(char * buf, int val, int base);
-extern char * utoa(char * buf, unsigned val, int base);
-
-
-
-
-extern char * ltoa(char * buf, long val, int base);
-extern char * ultoa(char * buf, unsigned long val, int base);
-
-extern char * ftoa(float f, int * status);
-
-# 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
-typedef unsigned char bool;
-
-# 59 "main.c"
-volatile uint16_t timer_flag = 0;
-
-# 181
-void main(void)
+# 58 "mcc_generated_files/memory.c"
+uint16_t FLASH_ReadWord(uint16_t flashAddr)
 {
-unsigned char c;
-unsigned char l;
-unsigned char hc;
-unsigned char lc;
-unsigned char c1;
-unsigned char c2;
-unsigned char buf[17];
+uint8_t GIEBitValue = INTCONbits.GIE;
 
-uint8_t state = 0;
+INTCONbits.GIE = 0;
+NVMADRL = (flashAddr & 0x00FF);
+NVMADRH = ((flashAddr & 0xFF00) >> 8);
 
-# 206
-SYSTEM_Initialize();
+NVMCON1bits.NVMREGS = 0;
+NVMCON1bits.RD = 1;
+__nop();
+__nop();
+INTCONbits.GIE = GIEBitValue;
 
+return ((uint16_t)((NVMDATH << 8) | NVMDATL));
+}
 
-TMR0_SetInterruptHandler(TMR0_callback);
-
-# 215
-(INTCONbits.GIE = 1);
-
-
-(INTCONbits.PEIE = 1);
-
-# 226
-i2c1_driver_open();
-TRISCbits.TRISC3 = 1;
-TRISCbits.TRISC4 = 1;
-WPUC3 = 1;
-WPUC4 = 1;
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word)
+{
+uint16_t blockStartAddr = (uint16_t)(flashAddr & ((0x2000-1) ^ (32-1)));
+uint8_t offset = (uint8_t)(flashAddr & (32-1));
+uint8_t i;
 
 
-unsigned char ctl=1;
-LCDinit();
+for (i=0; i<32; i++)
+{
+ramBuf[i] = FLASH_ReadWord((blockStartAddr+i));
+}
 
-while (1)
+
+ramBuf[offset] = word;
+
+
+FLASH_WriteBlock(blockStartAddr, ramBuf);
+}
+
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray)
+{
+uint16_t blockStartAddr = (uint16_t )(writeAddr & ((0x2000-1) ^ (32-1)));
+uint8_t GIEBitValue = INTCONbits.GIE;
+uint8_t i;
+
+
+
+if( writeAddr != blockStartAddr )
+{
+return -1;
+}
+
+INTCONbits.GIE = 0;
+
+
+FLASH_EraseBlock(writeAddr);
+
+
+NVMCON1bits.NVMREGS = 0;
+NVMCON1bits.WREN = 1;
+NVMCON1bits.LWLO = 1;
+
+for (i=0; i<32; i++)
 {
 
-if (PMON != 0 && (timer_flag%PMON) == 0){
-c = tsttc();
-l = lumin();
+NVMADRL = (writeAddr & 0xFF);
 
-}
-checkButtonS1();
-checkButtonS2();
+NVMADRH = ((writeAddr & 0xFF00) >> 8);
 
-switch(state){
-case 0:
 
-if(btn1State == 1){
+NVMDATL = flashWordArray[i];
+NVMDATH = ((flashWordArray[i] & 0xFF00) >> 8);
 
-state = 1;
-}
-break;
-case 1:
+if(i == (32-1))
+{
 
-if(btn2State == 1){
-
-conf_clock_hh();
-}else if(btn1State == 1){
-
-state = 2;
-}
-break;
-case 2:
-if(btn2State == 1){
-
-conf_clock_mm();
-}else if(btn1State == 1){
-
-state = 3;
-}
-break;
-case 3:
-if(btn2State == 1){
-
-conf_clock_ss();
-}else if(btn1State == 1){
-
-state = 4;
-}
-break;
-case 4:
-if(btn2State == 1){
-
-state = 5;
-}else if(btn1State == 1){
-
-state = 8;
-}
-break;
-case 5:
-if(btn2State == 1){
-
-conf_alarm_hh();
-}else if(btn1State == 1){
-
-state = 6;
-}
-break;
-case 6:
-if(btn2State == 1){
-
-conf_alarm_mm();
-}else if(btn1State == 1){
-
-state = 7;
-}
-break;
-case 7:
-if(btn2State == 1){
-
-conf_alarm_ss();
-}else if(btn1State == 1){
-
-state = 8;
-}
-break;
-case 8:
-if(btn2State == 1){
-
-state = 9;
-}else if(btn1State == 1){
-
-state = 10;
-}
-break;
-case 9:
-if(btn2State == 1){
-
-conf_temp();
-}else if(btn1State == 1){
-
-state = 10;
-}
-break;
-case 10:
-if(btn2State == 1){
-
-state = 11;
-}else if(btn1State == 1){
-
-state = 12;
-}
-break;
-case 11:
-if(btn2State == 1){
-
-conf_lumin();
-}else if(btn1State == 1){
-
-state = 12;
-}
-break;
-case 12:
-if(btn2State == 1){
-
-conf_alarm_flag();
-}else if(btn1State == 1){
-
-state = 0;
-}
-break;
+NVMCON1bits.LWLO = 0;
 }
 
+NVMCON2 = 0x55;
+NVMCON2 = 0xAA;
+NVMCON1bits.WR = 1;
+__nop();
+__nop();
 
-
-lcd(c, l, ALAF, ctl, CLKH, CLKM, (timer_flag%60), state, ALAT, ALAL, ALAH, ALAM, ALAS);
-}
-}
-
-void TMR0_callback(void){
-timer_flag++;
-if(timer_flag % 60 == 0){
-CLKM++;
-
-}
-if(CLKM % 60 == 0 && CLKM != 0){
-CLKH++;
-CLKH %= 24;
-CLKM = 0;
-
-DATAEE_WriteByte(159,CLKH);
-DATAEE_WriteByte(160,CLKM);
-
-}
+writeAddr++;
 }
 
+NVMCON1bits.WREN = 0;
+INTCONbits.GIE = GIEBitValue;
 
-void save_register(unsigned char l, unsigned char c){
-static uint16_t n = 0;
-log buf;
-buf.hour = CLKH;
-buf.min = CLKM;
-buf.sec = (timer_flag%60);
-buf.temp = c;
-buf.lum = l;
-reg[n] = buf;
-DATAEE_WriteByte(n++,buf.hour);
-DATAEE_WriteByte(n++,buf.min);
-DATAEE_WriteByte(n++,buf.sec);
-DATAEE_WriteByte(n++,buf.temp);
-DATAEE_WriteByte(n++,buf.lum);
-n = n % (5*25);
+return 0;
 }
 
-void checkButtonS1(void) {
-if (btn1State == 0) {
-if (PORTBbits.RB4 == 0) {
-_delay((unsigned long)((200)*(1000000/4000.0)));
-btn1State = 1;
-}
-} else if (PORTBbits.RB4 == 1) {
-btn1State = 0;
-}
-}
+void FLASH_EraseBlock(uint16_t startAddr)
+{
+uint8_t GIEBitValue = INTCONbits.GIE;
 
-void checkButtonS2(void) {
-if (btn2State == 0) {
-if (PORTCbits.RC5 == 0) {
-_delay((unsigned long)((200)*(1000000/4000.0)));
-btn2State = 1;
-}
 
-} else if (PORTCbits.RC5 == 1) {
-btn2State = 0;
-}
-}
+INTCONbits.GIE = 0;
 
-# 435
-unsigned char tsttc (void){
-unsigned char value;
-do{
-while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+NVMADRL = (startAddr & 0xFF);
 
-WriteI2C(0x9a | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x9a | 0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-value = ReadI2C(); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
-} while (!(value & 0x40));
+NVMADRH = ((startAddr & 0xFF00) >> 8);
 
-while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x9a | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x9a | 0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-value = ReadI2C(); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
 
-return value;
+NVMCON1bits.NVMREGS = 0;
+NVMCON1bits.FREE = 1;
+NVMCON1bits.WREN = 1;
+
+
+NVMCON2 = 0x55;
+NVMCON2 = 0xAA;
+NVMCON1bits.WR = 1;
+__nop();
+__nop();
+
+NVMCON1bits.WREN = 0;
+INTCONbits.GIE = GIEBitValue;
 }
 
+# 180
+void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData)
+{
+uint8_t GIEBitValue = INTCONbits.GIE;
 
+NVMADRH = ((bAdd >> 8) & 0xFF);
+NVMADRL = (bAdd & 0xFF);
+NVMDATL = bData;
+NVMCON1bits.NVMREGS = 1;
+NVMCON1bits.WREN = 1;
+INTCONbits.GIE = 0;
+NVMCON2 = 0x55;
+NVMCON2 = 0xAA;
+NVMCON1bits.WR = 1;
 
-
-void conf_clock_hh(void){
-if (CLKH == 23){
-CLKH = 0;
-}else{
-CLKH++;
+while (NVMCON1bits.WR)
+{
 }
 
-return;
+NVMCON1bits.WREN = 0;
+INTCONbits.GIE = GIEBitValue;
 }
 
-void conf_clock_mm(void){
-if (CLKM == 59){
-CLKM = 0;
-}else{
-CLKM++;
-}
+uint8_t DATAEE_ReadByte(uint16_t bAdd)
+{
+NVMADRH = ((bAdd >> 8) & 0xFF);
+NVMADRL = (bAdd & 0xFF);
+NVMCON1bits.NVMREGS = 1;
+NVMCON1bits.RD = 1;
+__nop();
+__nop();
 
-return;
-}
-
-void conf_clock_ss(void){
-timer_flag++;
-return;
-}
-
-void conf_alarm_hh(void){
-if (ALAH == 23){
-ALAH = 0;
-}else{
-ALAH++;
-}
-
-return;
-}
-
-void conf_alarm_mm(void){
-if (ALAM == 59){
-ALAM = 0;
-}else{
-ALAM++;
-}
-
-return;
-}
-
-void conf_alarm_ss(void){
-if (ALAS == 59){
-ALAS = 0;
-}else{
-ALAS++;
-}
-
-return;
-}
-
-void conf_temp(void){
-
-if(ALAT == 50){
-ALAT = 0;
-}else{
-ALAT++;
-}
-return;
-}
-
-
-void conf_lumin(void){
-
-if(ALAL == 7){
-ALAL = 0;
-}else{
-ALAL++;
-}
-
-return;
-}
-
-void conf_alarm_flag(void){
-
-if(ALAF == 0){
-ALAF = 1;
-}else{
-ALAF = 0;
-}
-
-return;
+return (NVMDATL);
 }
 

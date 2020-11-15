@@ -1,26 +1,4 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F12258 `(v ~T0 @X0 0 tf ]
-[v F12261 `(v ~T0 @X0 0 tf ]
-[t ~ __interrupt . k ]
-[t T10 __interrupt  ]
-"21740 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16F1xxxx_DFP/1.4.119/xc8\pic\include\proc\pic16f18875.h
-[s S985 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S985 . INTE . IOCIE TMR0IE ]
-"21739
-[u S984 `S985 1 ]
-[n S984 . . ]
-"21747
-[v _PIE0bits `VS984 ~T0 @X0 0 e@1814 ]
-"21318
-[s S966 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S966 . INTF . IOCIF TMR0IF ]
-"21317
-[u S965 `S966 1 ]
-[n S965 . . ]
-"21325
-[v _PIR0bits `VS965 ~T0 @X0 0 e@1804 ]
-"297 mcc_generated_files/tmr0.h
-[v _TMR0_ISR `(v ~T0 @X0 0 ef ]
 "357 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16F1xxxx_DFP/1.4.119/xc8\pic\include\proc\pic16f18875.h
 [s S26 :1 `uc 1 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S26 . INTEDG . PEIE GIE ]
@@ -29,22 +7,31 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S25 . . ]
 "364
 [v _INTCONbits `VS25 ~T0 @X0 0 e@11 ]
-"21845
-[s S991 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S991 . SSP1IE BCL1IE SSP2IE BCL2IE TXIE RCIE ]
-"21844
-[u S990 `S991 1 ]
-[n S990 . . ]
-"21854
-[v _PIE3bits `VS990 ~T0 @X0 0 e@1817 ]
-"21423
-[s S972 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S972 . SSP1IF BCL1IF SSP2IF BCL2IF TXIF RCIF ]
-"21422
-[u S971 `S972 1 ]
-[n S971 . . ]
-"21432
-[v _PIR3bits `VS971 ~T0 @X0 0 e@1807 ]
+"23157
+[v _NVMADRL `Vuc ~T0 @X0 0 e@2074 ]
+"23219
+[v _NVMADRH `Vuc ~T0 @X0 0 e@2075 ]
+"23393
+[s S1057 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1057 . RD WR WREN WRERR FREE LWLO NVMREGS ]
+"23392
+[u S1056 `S1057 1 ]
+[n S1056 . . ]
+"23403
+[v _NVMCON1bits `VS1056 ~T0 @X0 0 e@2078 ]
+"31 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16F1xxxx_DFP/1.4.119/xc8\pic\include\pic.h
+[v ___nop `(v ~T0 @X0 0 ef ]
+[p i ___nop ]
+"23337 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16F1xxxx_DFP/1.4.119/xc8\pic\include\proc\pic16f18875.h
+[v _NVMDATH `Vuc ~T0 @X0 0 e@2077 ]
+"23275
+[v _NVMDATL `Vuc ~T0 @X0 0 e@2076 ]
+"164 mcc_generated_files/memory.h
+[v _FLASH_WriteBlock `(c ~T0 @X0 0 ef2`ui`*ui ]
+"189
+[v _FLASH_EraseBlock `(v ~T0 @X0 0 ef1`ui ]
+"23443 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16F1xxxx_DFP/1.4.119/xc8\pic\include\proc\pic16f18875.h
+[v _NVMCON2 `Vuc ~T0 @X0 0 e@2079 ]
 [; ;xc8\pic\include\xc.h: 18: extern const char __xc8_OPTIM_SPEED;
 [; ;xc8\pic\include\xc.h: 20: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -13722,8 +13709,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;xc8\pic\include\pic.h: 137: extern __bank0 unsigned char __resetbits;
 [; ;xc8\pic\include\pic.h: 138: extern __bank0 __bit __powerdown;
 [; ;xc8\pic\include\pic.h: 139: extern __bank0 __bit __timeout;
-[; ;pin_manager.h: 192: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 204: void PIN_MANAGER_IOC(void);
+[; ;stdbool.h: 15: typedef unsigned char bool;
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef __int24 int24_t;
@@ -13752,222 +13738,402 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 282: typedef uint32_t uintmax_t;
 [; ;stdint.h: 289: typedef int16_t intptr_t;
 [; ;stdint.h: 294: typedef uint16_t uintptr_t;
-[; ;stdbool.h: 15: typedef unsigned char bool;
-[; ;xc8\pic\include\__size_t.h: 4: typedef unsigned size_t;
-[; ;stdarg.h: 7: typedef void * va_list[1];
-[; ;stdarg.h: 10: extern void * __va_start(void);
-[; ;stdarg.h: 13: extern void * __va_arg(void *, ...);
-[; ;stdio.h: 43: struct __prbuf
-[; ;stdio.h: 44: {
-[; ;stdio.h: 45: char * ptr;
-[; ;stdio.h: 46: void (* func)(char);
-[; ;stdio.h: 47: };
-[; ;errno.h: 29: extern int errno;
-[; ;conio.h: 12: extern void init_uart(void);
-[; ;conio.h: 14: extern char getch(void);
-[; ;conio.h: 15: extern char getche(void);
-[; ;conio.h: 16: extern void putch(char);
-[; ;conio.h: 17: extern void ungetch(char);
-[; ;conio.h: 19: extern __bit kbhit(void);
-[; ;conio.h: 23: extern char * cgets(char *);
-[; ;conio.h: 24: extern void cputs(const char *);
-[; ;stdio.h: 88: extern int cprintf(char *, ...);
-[; ;stdio.h: 93: extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-[; ;stdio.h: 183: extern char * gets(char *);
-[; ;stdio.h: 184: extern int puts(const char *);
-[; ;stdio.h: 185: extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-[; ;stdio.h: 186: extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-[; ;stdio.h: 187: extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-[; ;stdio.h: 188: extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-[; ;stdio.h: 189: extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-[; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-[; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
-[; ;stdio.h: 195: extern int printf(const char *, ...);
-[; ;stdbool.h: 15: typedef unsigned char bool;
-[; ;i2c1_driver.h: 33: typedef void (*interruptHandler)(void);
-[; ;i2c1_driver.h: 36: inline void i2c1_driver_close(void);
-[; ;i2c1_driver.h: 39: inline void mssp1_enableIRQ(void);
-[; ;i2c1_driver.h: 40: inline __bit mssp1_IRQisEnabled(void);
-[; ;i2c1_driver.h: 41: inline void mssp1_disableIRQ(void);
-[; ;i2c1_driver.h: 42: inline void mssp1_clearIRQ(void);
-[; ;i2c1_driver.h: 43: inline void mssp1_setIRQ(void);
-[; ;i2c1_driver.h: 44: inline __bit mssp1_IRQisSet(void);
-[; ;i2c1_driver.h: 45: inline void mssp1_waitForEvent(uint16_t*);
-[; ;i2c1_driver.h: 48: __bit i2c1_driver_open(void);
-[; ;i2c1_driver.h: 49: inline char i2c1_driver_getRXData(void);
-[; ;i2c1_driver.h: 50: inline char i2c1_driver_getAddr(void);
-[; ;i2c1_driver.h: 51: inline void i2c1_driver_setAddr(char addr);
-[; ;i2c1_driver.h: 52: inline void i2c1_driver_setMask(char mask);
-[; ;i2c1_driver.h: 53: inline void i2c1_driver_TXData(char d);
-[; ;i2c1_driver.h: 54: inline void i2c1_driver_resetBus(void);
-[; ;i2c1_driver.h: 55: inline void i2c1_driver_start(void);
-[; ;i2c1_driver.h: 56: inline void i2c1_driver_restart(void);
-[; ;i2c1_driver.h: 57: inline void i2c1_driver_stop(void);
-[; ;i2c1_driver.h: 58: inline __bit i2c1_driver_isNACK(void);
-[; ;i2c1_driver.h: 59: inline void i2c1_driver_startRX(void);
-[; ;i2c1_driver.h: 60: inline void i2c1_driver_sendACK(void);
-[; ;i2c1_driver.h: 61: inline void i2c1_driver_sendNACK(void);
-[; ;i2c1_driver.h: 62: inline void i2c1_driver_clearBusCollision(void);
-[; ;i2c1_driver.h: 64: __bit i2c1_driver_initSlaveHardware(void);
-[; ;i2c1_driver.h: 65: inline void i2c1_driver_releaseClock(void);
-[; ;i2c1_driver.h: 66: inline __bit i2c1_driver_isBufferFull(void);
-[; ;i2c1_driver.h: 67: inline __bit i2c1_driver_isStart(void);
-[; ;i2c1_driver.h: 68: inline __bit i2c1_driver_isStop(void);
-[; ;i2c1_driver.h: 69: inline __bit i2c1_driver_isAddress(void);
-[; ;i2c1_driver.h: 70: inline __bit i2c1_driver_isData(void);
-[; ;i2c1_driver.h: 71: inline __bit i2c1_driver_isRead(void);
-[; ;i2c1_driver.h: 72: inline __bit i2c1_driver_isWriteCollision(void);
-[; ;i2c1_driver.h: 73: inline __bit i2c1_driver_isReceiveOverflow(void);
-[; ;i2c1_driver.h: 75: inline void i2c1_driver_setBusCollisionISR(interruptHandler handler);
-[; ;i2c1_driver.h: 76: inline void i2c1_driver_setI2cISR(interruptHandler handler);
-"77 mcc_generated_files/i2c1_driver.h
-[v _i2c1_driver_busCollisionISR `*F12258 ~T0 @X0 1 e ]
-[; ;i2c1_driver.h: 77: void (*i2c1_driver_busCollisionISR)(void);
-"78
-[v _i2c1_driver_i2cISR `*F12261 ~T0 @X0 1 e ]
-[; ;i2c1_driver.h: 78: void (*i2c1_driver_i2cISR)(void);
-[; ;stdbool.h: 15: typedef unsigned char bool;
-[; ;adcc.h: 72: typedef uint16_t adc_result_t;
-[; ;adcc.h: 89: typedef enum
-[; ;adcc.h: 90: {
-[; ;adcc.h: 91: CH_0 = 0x0,
-[; ;adcc.h: 92: channel_VSS = 0x3C,
-[; ;adcc.h: 93: channel_Temp = 0x3D,
-[; ;adcc.h: 94: channel_DAC1 = 0x3E,
-[; ;adcc.h: 95: channel_FVR_buf1 = 0x3F
-[; ;adcc.h: 96: } adcc_channel_t;
-[; ;adcc.h: 130: void ADCC_Initialize(void);
-[; ;adcc.h: 159: void ADCC_StartConversion(adcc_channel_t channel);
-[; ;adcc.h: 189: bool ADCC_IsConversionDone();
-[; ;adcc.h: 221: adc_result_t ADCC_GetConversionResult(void);
-[; ;adcc.h: 252: adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
-[; ;adcc.h: 277: void ADCC_StopConversion(void);
-[; ;adcc.h: 304: void ADCC_SetStopOnInterrupt(void);
-[; ;adcc.h: 329: void ADCC_DischargeSampleCapacitor(void);
-[; ;adcc.h: 355: void ADCC_LoadAcquisitionRegister(uint8_t);
-[; ;adcc.h: 381: void ADCC_SetPrechargeTime(uint8_t);
-[; ;adcc.h: 406: void ADCC_SetRepeatCount(uint8_t);
-[; ;adcc.h: 434: uint8_t ADCC_GetCurrentCountofConversions(void);
-[; ;adcc.h: 458: void ADCC_ClearAccumulator(void);
-[; ;adcc.h: 483: uint16_t ADCC_GetAccumulatorValue(void);
-[; ;adcc.h: 511: bool ADCC_HasAccumulatorOverflowed(void);
-[; ;adcc.h: 536: uint16_t ADCC_GetFilterValue(void);
-[; ;adcc.h: 564: uint16_t ADCC_GetPreviousResult(void);
-[; ;adcc.h: 590: void ADCC_DefineSetPoint(uint16_t);
-[; ;adcc.h: 616: void ADCC_SetUpperThreshold(uint16_t);
-[; ;adcc.h: 642: void ADCC_SetLowerThreshold(uint16_t);
-[; ;adcc.h: 669: uint16_t ADCC_GetErrorCalculation(void);
-[; ;adcc.h: 696: void ADCC_EnableDoubleSampling(void);
-[; ;adcc.h: 720: void ADCC_EnableContinuousConversion(void);
-[; ;adcc.h: 744: void ADCC_DisableContinuousConversion(void);
-[; ;adcc.h: 772: bool ADCC_HasErrorCrossedUpperThreshold(void);
-[; ;adcc.h: 800: bool ADCC_HasErrorCrossedLowerThreshold(void);
-[; ;adcc.h: 827: uint8_t ADCC_GetConversionStageStatus(void);
-[; ;stdbool.h: 15: typedef unsigned char bool;
 [; ;memory.h: 99: uint16_t FLASH_ReadWord(uint16_t flashAddr);
 [; ;memory.h: 128: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
 [; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 [; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
 [; ;memory.h: 222: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 248: uint8_t DATAEE_ReadByte(uint16_t bAdd);
-[; ;stdbool.h: 15: typedef unsigned char bool;
-[; ;tmr0.h: 106: void TMR0_Initialize(void);
-[; ;tmr0.h: 135: void TMR0_StartTimer(void);
-[; ;tmr0.h: 167: void TMR0_StopTimer(void);
-[; ;tmr0.h: 202: uint8_t TMR0_ReadTimer(void);
-[; ;tmr0.h: 241: void TMR0_WriteTimer(uint8_t timerVal);
-[; ;tmr0.h: 278: void TMR0_Reload(uint8_t periodVal);
-[; ;tmr0.h: 297: void TMR0_ISR(void);
-[; ;tmr0.h: 315: void TMR0_CallBack(void);
-[; ;tmr0.h: 333: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr0.h: 351: extern void (*TMR0_InterruptHandler)(void);
-[; ;tmr0.h: 369: void TMR0_DefaultInterruptHandler(void);
-[; ;mcc.h: 73: void SYSTEM_Initialize(void);
-[; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 99: void PMD_Initialize(void);
-[v $root$_INTERRUPT_InterruptManager `(v ~T0 @X0 0 e ]
-"52 mcc_generated_files/interrupt_manager.c
-[v _INTERRUPT_InterruptManager `(v ~T10 @X0 1 ef ]
-"53
-{
-[; ;interrupt_manager.c: 52: void __interrupt() INTERRUPT_InterruptManager (void)
-[; ;interrupt_manager.c: 53: {
-[e :U _INTERRUPT_InterruptManager ]
-[f ]
-[; ;interrupt_manager.c: 55: if(PIE0bits.TMR0IE == 1 && PIR0bits.TMR0IF == 1)
-"55
-[e $ ! && == -> . . _PIE0bits 0 3 `i -> 1 `i == -> . . _PIR0bits 0 3 `i -> 1 `i 1622  ]
-[; ;interrupt_manager.c: 56: {
-"56
-{
-[; ;interrupt_manager.c: 57: TMR0_ISR();
-"57
-[e ( _TMR0_ISR ..  ]
-"58
-}
-[; ;interrupt_manager.c: 58: }
-[e $U 1623  ]
+"58 mcc_generated_files/memory.c
+[v _FLASH_ReadWord `(ui ~T0 @X0 1 ef1`ui ]
 "59
-[e :U 1622 ]
-[; ;interrupt_manager.c: 59: else if(INTCONbits.PEIE == 1)
-[e $ ! == -> . . _INTCONbits 0 2 `i -> 1 `i 1624  ]
-[; ;interrupt_manager.c: 60: {
+{
+[; ;memory.c: 58: uint16_t FLASH_ReadWord(uint16_t flashAddr)
+[; ;memory.c: 59: {
+[e :U _FLASH_ReadWord ]
+"58
+[v _flashAddr `ui ~T0 @X0 1 r1 ]
+"59
+[f ]
 "60
-{
-[; ;interrupt_manager.c: 61: if(PIE3bits.BCL1IE == 1 && PIR3bits.BCL1IF == 1)
-"61
-[e $ ! && == -> . . _PIE3bits 0 1 `i -> 1 `i == -> . . _PIR3bits 0 1 `i -> 1 `i 1625  ]
-[; ;interrupt_manager.c: 62: {
+[v _GIEBitValue `uc ~T0 @X0 1 a ]
+[; ;memory.c: 60: uint8_t GIEBitValue = INTCONbits.GIE;
+[e = _GIEBitValue . . _INTCONbits 0 3 ]
+[; ;memory.c: 62: INTCONbits.GIE = 0;
 "62
-{
-[; ;interrupt_manager.c: 63: i2c1_driver_busCollisionISR();
+[e = . . _INTCONbits 0 3 -> -> 0 `i `uc ]
+[; ;memory.c: 63: NVMADRL = (flashAddr & 0x00FF);
 "63
-[e ( *U _i2c1_driver_busCollisionISR ..  ]
+[e = _NVMADRL -> & _flashAddr -> -> 255 `i `ui `uc ]
+[; ;memory.c: 64: NVMADRH = ((flashAddr & 0xFF00) >> 8);
 "64
-}
-[; ;interrupt_manager.c: 64: }
-[e $U 1626  ]
-"65
-[e :U 1625 ]
-[; ;interrupt_manager.c: 65: else if(PIE3bits.SSP1IE == 1 && PIR3bits.SSP1IF == 1)
-[e $ ! && == -> . . _PIE3bits 0 0 `i -> 1 `i == -> . . _PIR3bits 0 0 `i -> 1 `i 1627  ]
-[; ;interrupt_manager.c: 66: {
+[e = _NVMADRH -> >> & _flashAddr -> 65280 `ui -> 8 `i `uc ]
+[; ;memory.c: 66: NVMCON1bits.NVMREGS = 0;
 "66
-{
-[; ;interrupt_manager.c: 67: i2c1_driver_i2cISR();
+[e = . . _NVMCON1bits 0 6 -> -> 0 `i `uc ]
+[; ;memory.c: 67: NVMCON1bits.RD = 1;
 "67
-[e ( *U _i2c1_driver_i2cISR ..  ]
+[e = . . _NVMCON1bits 0 0 -> -> 1 `i `uc ]
+[; ;memory.c: 68: __nop();
 "68
-}
-[; ;interrupt_manager.c: 68: }
-[e $U 1628  ]
+[e ( ___nop ..  ]
+[; ;memory.c: 69: __nop();
 "69
-[e :U 1627 ]
-[; ;interrupt_manager.c: 69: else
-[; ;interrupt_manager.c: 70: {
+[e ( ___nop ..  ]
+[; ;memory.c: 70: INTCONbits.GIE = GIEBitValue;
 "70
-{
+[e = . . _INTCONbits 0 3 _GIEBitValue ]
+[; ;memory.c: 72: return ((uint16_t)((NVMDATH << 8) | NVMDATL));
 "72
-}
-[e :U 1628 ]
-[e :U 1626 ]
+[e ) -> | << -> _NVMDATH `i -> 8 `i -> _NVMDATL `i `ui ]
+[e $UE 1620  ]
+[; ;memory.c: 73: }
 "73
+[e :UE 1620 ]
 }
-[; ;interrupt_manager.c: 72: }
-[; ;interrupt_manager.c: 73: }
-[e $U 1629  ]
-"74
-[e :U 1624 ]
-[; ;interrupt_manager.c: 74: else
-[; ;interrupt_manager.c: 75: {
 "75
+[v _FLASH_WriteWord `(v ~T0 @X0 1 ef3`ui`*ui`ui ]
+"76
 {
+[; ;memory.c: 75: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word)
+[; ;memory.c: 76: {
+[e :U _FLASH_WriteWord ]
+"75
+[v _flashAddr `ui ~T0 @X0 1 r1 ]
+[v _ramBuf `*ui ~T0 @X0 1 r2 ]
+[v _word `ui ~T0 @X0 1 r3 ]
+"76
+[f ]
 "77
-}
-[e :U 1629 ]
-[e :U 1623 ]
-[; ;interrupt_manager.c: 77: }
-[; ;interrupt_manager.c: 78: }
+[v _blockStartAddr `ui ~T0 @X0 1 a ]
+[; ;memory.c: 77: uint16_t blockStartAddr = (uint16_t)(flashAddr & ((0x2000-1) ^ (32-1)));
+[e = _blockStartAddr & _flashAddr -> ^ - -> 8192 `i -> 1 `i - -> 32 `i -> 1 `i `ui ]
 "78
+[v _offset `uc ~T0 @X0 1 a ]
+[; ;memory.c: 78: uint8_t offset = (uint8_t)(flashAddr & (32-1));
+[e = _offset -> & _flashAddr -> - -> 32 `i -> 1 `i `ui `uc ]
+"79
+[v _i `uc ~T0 @X0 1 a ]
+[; ;memory.c: 79: uint8_t i;
+[; ;memory.c: 82: for (i=0; i<32; i++)
+"82
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 32 `i 1622  ]
+[e $U 1623  ]
+"83
+[e :U 1622 ]
+[; ;memory.c: 83: {
+{
+[; ;memory.c: 84: ramBuf[i] = FLASH_ReadWord((blockStartAddr+i));
+"84
+[e = *U + _ramBuf * -> _i `ux -> -> # *U _ramBuf `ui `ux ( _FLASH_ReadWord (1 + _blockStartAddr -> _i `ui ]
+"85
+}
+"82
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 32 `i 1622  ]
+[e :U 1623 ]
+"85
+}
+[; ;memory.c: 85: }
+[; ;memory.c: 88: ramBuf[offset] = word;
+"88
+[e = *U + _ramBuf * -> _offset `ux -> -> # *U _ramBuf `ui `ux _word ]
+[; ;memory.c: 91: FLASH_WriteBlock(blockStartAddr, ramBuf);
+"91
+[e ( _FLASH_WriteBlock (2 , _blockStartAddr _ramBuf ]
+[; ;memory.c: 92: }
+"92
 [e :UE 1621 ]
+}
+"94
+[v _FLASH_WriteBlock `(c ~T0 @X0 1 ef2`ui`*ui ]
+"95
+{
+[; ;memory.c: 94: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray)
+[; ;memory.c: 95: {
+[e :U _FLASH_WriteBlock ]
+"94
+[v _writeAddr `ui ~T0 @X0 1 r1 ]
+[v _flashWordArray `*ui ~T0 @X0 1 r2 ]
+"95
+[f ]
+"96
+[v _blockStartAddr `ui ~T0 @X0 1 a ]
+[; ;memory.c: 96: uint16_t blockStartAddr = (uint16_t )(writeAddr & ((0x2000-1) ^ (32-1)));
+[e = _blockStartAddr & _writeAddr -> ^ - -> 8192 `i -> 1 `i - -> 32 `i -> 1 `i `ui ]
+"97
+[v _GIEBitValue `uc ~T0 @X0 1 a ]
+[; ;memory.c: 97: uint8_t GIEBitValue = INTCONbits.GIE;
+[e = _GIEBitValue . . _INTCONbits 0 3 ]
+"98
+[v _i `uc ~T0 @X0 1 a ]
+[; ;memory.c: 98: uint8_t i;
+[; ;memory.c: 102: if( writeAddr != blockStartAddr )
+"102
+[e $ ! != _writeAddr _blockStartAddr 1626  ]
+[; ;memory.c: 103: {
+"103
+{
+[; ;memory.c: 104: return -1;
+"104
+[e ) -> -U -> 1 `i `c ]
+[e $UE 1625  ]
+"105
+}
+[e :U 1626 ]
+[; ;memory.c: 105: }
+[; ;memory.c: 107: INTCONbits.GIE = 0;
+"107
+[e = . . _INTCONbits 0 3 -> -> 0 `i `uc ]
+[; ;memory.c: 110: FLASH_EraseBlock(writeAddr);
+"110
+[e ( _FLASH_EraseBlock (1 _writeAddr ]
+[; ;memory.c: 113: NVMCON1bits.NVMREGS = 0;
+"113
+[e = . . _NVMCON1bits 0 6 -> -> 0 `i `uc ]
+[; ;memory.c: 114: NVMCON1bits.WREN = 1;
+"114
+[e = . . _NVMCON1bits 0 2 -> -> 1 `i `uc ]
+[; ;memory.c: 115: NVMCON1bits.LWLO = 1;
+"115
+[e = . . _NVMCON1bits 0 5 -> -> 1 `i `uc ]
+[; ;memory.c: 117: for (i=0; i<32; i++)
+"117
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 32 `i 1627  ]
+[e $U 1628  ]
+"118
+[e :U 1627 ]
+[; ;memory.c: 118: {
+{
+[; ;memory.c: 120: NVMADRL = (writeAddr & 0xFF);
+"120
+[e = _NVMADRL -> & _writeAddr -> -> 255 `i `ui `uc ]
+[; ;memory.c: 122: NVMADRH = ((writeAddr & 0xFF00) >> 8);
+"122
+[e = _NVMADRH -> >> & _writeAddr -> 65280 `ui -> 8 `i `uc ]
+[; ;memory.c: 125: NVMDATL = flashWordArray[i];
+"125
+[e = _NVMDATL -> *U + _flashWordArray * -> _i `ux -> -> # *U _flashWordArray `ui `ux `uc ]
+[; ;memory.c: 126: NVMDATH = ((flashWordArray[i] & 0xFF00) >> 8);
+"126
+[e = _NVMDATH -> >> & *U + _flashWordArray * -> _i `ux -> -> # *U _flashWordArray `ui `ux -> 65280 `ui -> 8 `i `uc ]
+[; ;memory.c: 128: if(i == (32-1))
+"128
+[e $ ! == -> _i `i - -> 32 `i -> 1 `i 1630  ]
+[; ;memory.c: 129: {
+"129
+{
+[; ;memory.c: 131: NVMCON1bits.LWLO = 0;
+"131
+[e = . . _NVMCON1bits 0 5 -> -> 0 `i `uc ]
+"132
+}
+[e :U 1630 ]
+[; ;memory.c: 132: }
+[; ;memory.c: 134: NVMCON2 = 0x55;
+"134
+[e = _NVMCON2 -> -> 85 `i `uc ]
+[; ;memory.c: 135: NVMCON2 = 0xAA;
+"135
+[e = _NVMCON2 -> -> 170 `i `uc ]
+[; ;memory.c: 136: NVMCON1bits.WR = 1;
+"136
+[e = . . _NVMCON1bits 0 1 -> -> 1 `i `uc ]
+[; ;memory.c: 137: __nop();
+"137
+[e ( ___nop ..  ]
+[; ;memory.c: 138: __nop();
+"138
+[e ( ___nop ..  ]
+[; ;memory.c: 140: writeAddr++;
+"140
+[e ++ _writeAddr -> -> 1 `i `ui ]
+"141
+}
+"117
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 32 `i 1627  ]
+[e :U 1628 ]
+"141
+}
+[; ;memory.c: 141: }
+[; ;memory.c: 143: NVMCON1bits.WREN = 0;
+"143
+[e = . . _NVMCON1bits 0 2 -> -> 0 `i `uc ]
+[; ;memory.c: 144: INTCONbits.GIE = GIEBitValue;
+"144
+[e = . . _INTCONbits 0 3 _GIEBitValue ]
+[; ;memory.c: 146: return 0;
+"146
+[e ) -> -> 0 `i `c ]
+[e $UE 1625  ]
+[; ;memory.c: 147: }
+"147
+[e :UE 1625 ]
+}
+"149
+[v _FLASH_EraseBlock `(v ~T0 @X0 1 ef1`ui ]
+"150
+{
+[; ;memory.c: 149: void FLASH_EraseBlock(uint16_t startAddr)
+[; ;memory.c: 150: {
+[e :U _FLASH_EraseBlock ]
+"149
+[v _startAddr `ui ~T0 @X0 1 r1 ]
+"150
+[f ]
+"151
+[v _GIEBitValue `uc ~T0 @X0 1 a ]
+[; ;memory.c: 151: uint8_t GIEBitValue = INTCONbits.GIE;
+[e = _GIEBitValue . . _INTCONbits 0 3 ]
+[; ;memory.c: 154: INTCONbits.GIE = 0;
+"154
+[e = . . _INTCONbits 0 3 -> -> 0 `i `uc ]
+[; ;memory.c: 156: NVMADRL = (startAddr & 0xFF);
+"156
+[e = _NVMADRL -> & _startAddr -> -> 255 `i `ui `uc ]
+[; ;memory.c: 158: NVMADRH = ((startAddr & 0xFF00) >> 8);
+"158
+[e = _NVMADRH -> >> & _startAddr -> 65280 `ui -> 8 `i `uc ]
+[; ;memory.c: 161: NVMCON1bits.NVMREGS = 0;
+"161
+[e = . . _NVMCON1bits 0 6 -> -> 0 `i `uc ]
+[; ;memory.c: 162: NVMCON1bits.FREE = 1;
+"162
+[e = . . _NVMCON1bits 0 4 -> -> 1 `i `uc ]
+[; ;memory.c: 163: NVMCON1bits.WREN = 1;
+"163
+[e = . . _NVMCON1bits 0 2 -> -> 1 `i `uc ]
+[; ;memory.c: 166: NVMCON2 = 0x55;
+"166
+[e = _NVMCON2 -> -> 85 `i `uc ]
+[; ;memory.c: 167: NVMCON2 = 0xAA;
+"167
+[e = _NVMCON2 -> -> 170 `i `uc ]
+[; ;memory.c: 168: NVMCON1bits.WR = 1;
+"168
+[e = . . _NVMCON1bits 0 1 -> -> 1 `i `uc ]
+[; ;memory.c: 169: __nop();
+"169
+[e ( ___nop ..  ]
+[; ;memory.c: 170: __nop();
+"170
+[e ( ___nop ..  ]
+[; ;memory.c: 172: NVMCON1bits.WREN = 0;
+"172
+[e = . . _NVMCON1bits 0 2 -> -> 0 `i `uc ]
+[; ;memory.c: 173: INTCONbits.GIE = GIEBitValue;
+"173
+[e = . . _INTCONbits 0 3 _GIEBitValue ]
+[; ;memory.c: 174: }
+"174
+[e :UE 1631 ]
+}
+"180
+[v _DATAEE_WriteByte `(v ~T0 @X0 1 ef2`ui`uc ]
+"181
+{
+[; ;memory.c: 180: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData)
+[; ;memory.c: 181: {
+[e :U _DATAEE_WriteByte ]
+"180
+[v _bAdd `ui ~T0 @X0 1 r1 ]
+[v _bData `uc ~T0 @X0 1 r2 ]
+"181
+[f ]
+"182
+[v _GIEBitValue `uc ~T0 @X0 1 a ]
+[; ;memory.c: 182: uint8_t GIEBitValue = INTCONbits.GIE;
+[e = _GIEBitValue . . _INTCONbits 0 3 ]
+[; ;memory.c: 184: NVMADRH = ((bAdd >> 8) & 0xFF);
+"184
+[e = _NVMADRH -> & >> _bAdd -> 8 `i -> -> 255 `i `ui `uc ]
+[; ;memory.c: 185: NVMADRL = (bAdd & 0xFF);
+"185
+[e = _NVMADRL -> & _bAdd -> -> 255 `i `ui `uc ]
+[; ;memory.c: 186: NVMDATL = bData;
+"186
+[e = _NVMDATL _bData ]
+[; ;memory.c: 187: NVMCON1bits.NVMREGS = 1;
+"187
+[e = . . _NVMCON1bits 0 6 -> -> 1 `i `uc ]
+[; ;memory.c: 188: NVMCON1bits.WREN = 1;
+"188
+[e = . . _NVMCON1bits 0 2 -> -> 1 `i `uc ]
+[; ;memory.c: 189: INTCONbits.GIE = 0;
+"189
+[e = . . _INTCONbits 0 3 -> -> 0 `i `uc ]
+[; ;memory.c: 190: NVMCON2 = 0x55;
+"190
+[e = _NVMCON2 -> -> 85 `i `uc ]
+[; ;memory.c: 191: NVMCON2 = 0xAA;
+"191
+[e = _NVMCON2 -> -> 170 `i `uc ]
+[; ;memory.c: 192: NVMCON1bits.WR = 1;
+"192
+[e = . . _NVMCON1bits 0 1 -> -> 1 `i `uc ]
+[; ;memory.c: 194: while (NVMCON1bits.WR)
+"194
+[e $U 1633  ]
+[e :U 1634 ]
+[; ;memory.c: 195: {
+"195
+{
+"196
+}
+[e :U 1633 ]
+"194
+[e $ != -> . . _NVMCON1bits 0 1 `i -> -> -> 0 `i `Vuc `i 1634  ]
+[e :U 1635 ]
+[; ;memory.c: 196: }
+[; ;memory.c: 198: NVMCON1bits.WREN = 0;
+"198
+[e = . . _NVMCON1bits 0 2 -> -> 0 `i `uc ]
+[; ;memory.c: 199: INTCONbits.GIE = GIEBitValue;
+"199
+[e = . . _INTCONbits 0 3 _GIEBitValue ]
+[; ;memory.c: 200: }
+"200
+[e :UE 1632 ]
+}
+"202
+[v _DATAEE_ReadByte `(uc ~T0 @X0 1 ef1`ui ]
+"203
+{
+[; ;memory.c: 202: uint8_t DATAEE_ReadByte(uint16_t bAdd)
+[; ;memory.c: 203: {
+[e :U _DATAEE_ReadByte ]
+"202
+[v _bAdd `ui ~T0 @X0 1 r1 ]
+"203
+[f ]
+[; ;memory.c: 204: NVMADRH = ((bAdd >> 8) & 0xFF);
+"204
+[e = _NVMADRH -> & >> _bAdd -> 8 `i -> -> 255 `i `ui `uc ]
+[; ;memory.c: 205: NVMADRL = (bAdd & 0xFF);
+"205
+[e = _NVMADRL -> & _bAdd -> -> 255 `i `ui `uc ]
+[; ;memory.c: 206: NVMCON1bits.NVMREGS = 1;
+"206
+[e = . . _NVMCON1bits 0 6 -> -> 1 `i `uc ]
+[; ;memory.c: 207: NVMCON1bits.RD = 1;
+"207
+[e = . . _NVMCON1bits 0 0 -> -> 1 `i `uc ]
+[; ;memory.c: 208: __nop();
+"208
+[e ( ___nop ..  ]
+[; ;memory.c: 209: __nop();
+"209
+[e ( ___nop ..  ]
+[; ;memory.c: 211: return (NVMDATL);
+"211
+[e ) _NVMDATL ]
+[e $UE 1636  ]
+[; ;memory.c: 212: }
+"212
+[e :UE 1636 ]
 }

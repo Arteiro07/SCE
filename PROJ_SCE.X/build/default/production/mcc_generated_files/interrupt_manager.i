@@ -21036,10 +21036,10 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 132 "mcc_generated_files/pin_manager.h"
+# 192 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 
-# 144
+# 204
 void PIN_MANAGER_IOC(void);
 
 # 13 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdint.h"
@@ -21248,6 +21248,124 @@ void (*i2c1_driver_i2cISR)(void);
 # 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
 typedef unsigned char bool;
 
+# 72 "mcc_generated_files/adcc.h"
+typedef uint16_t adc_result_t;
+
+# 89
+typedef enum
+{
+CH_0 = 0x0,
+channel_VSS = 0x3C,
+channel_Temp = 0x3D,
+channel_DAC1 = 0x3E,
+channel_FVR_buf1 = 0x3F
+} adcc_channel_t;
+
+# 130
+void ADCC_Initialize(void);
+
+# 159
+void ADCC_StartConversion(adcc_channel_t channel);
+
+# 189
+bool ADCC_IsConversionDone();
+
+# 221
+adc_result_t ADCC_GetConversionResult(void);
+
+# 252
+adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
+
+# 277
+void ADCC_StopConversion(void);
+
+# 304
+void ADCC_SetStopOnInterrupt(void);
+
+# 329
+void ADCC_DischargeSampleCapacitor(void);
+
+# 355
+void ADCC_LoadAcquisitionRegister(uint8_t);
+
+# 381
+void ADCC_SetPrechargeTime(uint8_t);
+
+# 406
+void ADCC_SetRepeatCount(uint8_t);
+
+# 434
+uint8_t ADCC_GetCurrentCountofConversions(void);
+
+# 458
+void ADCC_ClearAccumulator(void);
+
+# 483
+uint16_t ADCC_GetAccumulatorValue(void);
+
+# 511
+bool ADCC_HasAccumulatorOverflowed(void);
+
+# 536
+uint16_t ADCC_GetFilterValue(void);
+
+# 564
+uint16_t ADCC_GetPreviousResult(void);
+
+# 590
+void ADCC_DefineSetPoint(uint16_t);
+
+# 616
+void ADCC_SetUpperThreshold(uint16_t);
+
+# 642
+void ADCC_SetLowerThreshold(uint16_t);
+
+# 669
+uint16_t ADCC_GetErrorCalculation(void);
+
+# 696
+void ADCC_EnableDoubleSampling(void);
+
+# 720
+void ADCC_EnableContinuousConversion(void);
+
+# 744
+void ADCC_DisableContinuousConversion(void);
+
+# 772
+bool ADCC_HasErrorCrossedUpperThreshold(void);
+
+# 800
+bool ADCC_HasErrorCrossedLowerThreshold(void);
+
+# 827
+uint8_t ADCC_GetConversionStageStatus(void);
+
+# 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
+typedef unsigned char bool;
+
+# 99 "mcc_generated_files/memory.h"
+uint16_t FLASH_ReadWord(uint16_t flashAddr);
+
+# 128
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+
+# 164
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+
+# 189
+void FLASH_EraseBlock(uint16_t startAddr);
+
+# 222
+void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+
+# 248
+uint8_t DATAEE_ReadByte(uint16_t bAdd);
+
+# 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
+typedef unsigned char bool;
+
 # 106 "mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
 
@@ -21281,13 +21399,13 @@ extern void (*TMR0_InterruptHandler)(void);
 # 369
 void TMR0_DefaultInterruptHandler(void);
 
-# 71 "mcc_generated_files/mcc.h"
+# 73 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 84
+# 86
 void OSCILLATOR_Initialize(void);
 
-# 97
+# 99
 void PMD_Initialize(void);
 
 # 52 "mcc_generated_files/interrupt_manager.c"

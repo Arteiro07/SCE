@@ -1,5 +1,5 @@
 
-# 1 "main.c"
+# 1 "LCD.c"
 
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16F1xxxx_DFP/1.4.119/xc8\pic\include\xc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -21408,64 +21408,6 @@ void OSCILLATOR_Initialize(void);
 # 99
 void PMD_Initialize(void);
 
-# 15 "LCD.h"
-void LCDsend(unsigned char c);
-unsigned char LCDrecv(unsigned char mode);
-void LCDsend2x4(unsigned char c, unsigned char mode);
-void LCDinit(void);
-void LCDcmd(unsigned char c);
-void LCDchar(unsigned char c);
-void LCDstr(unsigned char *p);
-int LCDbusy();
-bool lcd(unsigned char temperature, unsigned char luminosity, unsigned char alarm, unsigned char ctl, unsigned char h, unsigned char m, unsigned char s, unsigned char state, unsigned char temperature_alarm, unsigned char luminosity_alarm, unsigned char alah, unsigned char alam,unsigned char alas );
-unsigned char lumin(void);
-
-# 16 "main.h"
-typedef struct _log{
-uint8_t hour;
-uint8_t min;
-uint8_t sec;
-uint8_t temp;
-uint8_t lum;
-}log;
-
-# 37
-uint8_t PMON = 3;
-uint8_t TALA = 5;
-uint8_t ALAH = 12;
-uint8_t ALAM = 0;
-uint8_t ALAS = 0;
-uint8_t ALAT = 28;
-uint8_t ALAL = 4;
-uint8_t ALAF = 0;
-uint8_t CLKH = 0;
-uint8_t CLKM = 0;
-uint8_t CSUM = 0;
-
-log reg[25];
-
-
-uint8_t btn1State = 0;
-uint8_t btn2State = 0;
-
-
-void TMR0_callback(void);
-void save_register(unsigned char l, unsigned char c);
-void checkButtonS1(void);
-void checkButtonS2(void);
-unsigned char tsttc (void);
-
-
-void conf_clock_hh(void);
-void conf_clock_mm(void);
-void conf_clock_ss(void);
-void conf_alarm_hh(void);
-void conf_alarm_mm(void);
-void conf_alarm_ss(void);
-void conf_temp(void);
-void conf_lumin(void);
-void conf_alarm_flag(void);
-
 # 154 "I2C/i2c.h"
 void OpenI2C( unsigned char sync_mode, unsigned char slew );
 
@@ -21480,443 +21422,321 @@ signed char WriteI2C( unsigned char data_out );
 
 signed char getsI2C( unsigned char *rdptr, unsigned char length );
 
-# 16 "config_mode.h"
-void conf_clock_hh(void);
-void conf_clock_mm(void);
-void conf_clock_ss(void);
-void conf_alarm_hh(void);
-void conf_alarm_mm(void);
-void conf_alarm_ss(void);
-void conf_temp(void);
-void conf_lumin(void);
-void conf_alarm_flag(void);
-
-# 7 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdlib.h"
-typedef unsigned short wchar_t;
-
-# 15
-typedef struct {
-int rem;
-int quot;
-} div_t;
-typedef struct {
-unsigned rem;
-unsigned quot;
-} udiv_t;
-typedef struct {
-long quot;
-long rem;
-} ldiv_t;
-typedef struct {
-unsigned long quot;
-unsigned long rem;
-} uldiv_t;
-
-# 65
+# 30 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\math.h"
+extern double fabs(double);
+extern double floor(double);
+extern double ceil(double);
+extern double modf(double, double *);
+extern double sqrt(double);
 extern double atof(const char *);
-extern double strtod(const char *, const char **);
-extern int atoi(const char *);
-extern unsigned xtoi(const char *);
-extern long atol(const char *);
+extern double sin(double) ;
+extern double cos(double) ;
+extern double tan(double) ;
+extern double asin(double) ;
+extern double acos(double) ;
+extern double atan(double);
+extern double atan2(double, double) ;
+extern double log(double);
+extern double log10(double);
+extern double pow(double, double) ;
+extern double exp(double) ;
+extern double sinh(double) ;
+extern double cosh(double) ;
+extern double tanh(double);
+extern double eval_poly(double, const double *, int);
+extern double frexp(double, int *);
+extern double ldexp(double, int);
+extern double fmod(double, double);
+extern double trunc(double);
+extern double round(double);
 
-# 73
-extern long strtol(const char *, char **, int);
-
-extern int rand(void);
-extern void srand(unsigned int);
-extern void * calloc(size_t, size_t);
-extern div_t div(int numer, int denom);
-extern udiv_t udiv(unsigned numer, unsigned denom);
-extern ldiv_t ldiv(long numer, long denom);
-extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
-
-# 85
-extern unsigned long _lrotl(unsigned long value, unsigned int shift);
-extern unsigned long _lrotr(unsigned long value, unsigned int shift);
-extern unsigned int _rotl(unsigned int value, unsigned int shift);
-extern unsigned int _rotr(unsigned int value, unsigned int shift);
-
-
-
-
-extern void * malloc(size_t);
-extern void free(void *);
-extern void * realloc(void *, size_t);
-
-# 104
-extern int atexit(void (*)(void));
-extern char * getenv(const char *);
-extern char ** environ;
-extern int system(char *);
-extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
-extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
-extern int abs(int);
-extern long labs(long);
-
-extern char * itoa(char * buf, int val, int base);
-extern char * utoa(char * buf, unsigned val, int base);
-
-
-
-
-extern char * ltoa(char * buf, long val, int base);
-extern char * ultoa(char * buf, unsigned long val, int base);
-
-extern char * ftoa(float f, int * status);
-
-# 15 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdbool.h"
-typedef unsigned char bool;
-
-# 59 "main.c"
-volatile uint16_t timer_flag = 0;
-
-# 181
-void main(void)
+# 18 "LCD.c"
+void LCDsend(unsigned char c)
 {
-unsigned char c;
-unsigned char l;
+while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(0x4e | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(c); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
+}
+unsigned char LCDrecv(unsigned char mode)
+{
 unsigned char hc;
 unsigned char lc;
-unsigned char c1;
-unsigned char c2;
+
+while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(0x4e | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(0xf0 | 0x08 | 0x02 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(0xf0 | 0x08 | 0x04 | 0x02 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+_delay((unsigned long)((1)*(1000000/4000000.0)));
+SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(0x4e | 0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+hc = ReadI2C(); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN);
+SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(0x4e | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(0xf0 | 0x08 | 0x02 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(0xf0 | 0x08 | 0x04 | 0x02 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+_delay((unsigned long)((1)*(1000000/4000000.0)));
+SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(0x4e | 0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+lc = ReadI2C(); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN);
+SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(0x4e | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(0xf0 | 0x08 | 0x02 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
+return ((hc&0xf0) | ((lc>>4)&0x0f));
+}
+
+void LCDsend2x4(unsigned char c, unsigned char mode)
+{
+unsigned char hc;
+unsigned char lc;
+
+hc = c & 0xf0;
+lc = (c << 4) & 0xf0;
+
+while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(0x4e | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(hc | 0x08 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(hc | 0x08 | 0x04 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+_delay((unsigned long)((1)*(1000000/4000000.0)));
+WriteI2C(hc | 0x08 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(lc | 0x08 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+WriteI2C(lc | 0x08 | 0x04 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+_delay((unsigned long)((1)*(1000000/4000000.0)));
+WriteI2C(lc | 0x08 | mode); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
+_delay((unsigned long)((50)*(1000000/4000000.0)));
+}
+
+void LCDinit(void)
+{
+_delay((unsigned long)((50)*(1000000/4000.0)));
+LCDsend(0x30);
+LCDsend(0x34); _delay((unsigned long)((500)*(1000000/4000000.0))); LCDsend(0x30);
+_delay((unsigned long)((5)*(1000000/4000.0)));
+LCDsend(0x30);
+LCDsend(0x34); _delay((unsigned long)((500)*(1000000/4000000.0))); LCDsend(0x30);
+_delay((unsigned long)((100)*(1000000/4000000.0)));
+LCDsend(0x30);
+LCDsend(0x34); _delay((unsigned long)((500)*(1000000/4000000.0))); LCDsend(0x30);
+_delay((unsigned long)((100)*(1000000/4000000.0)));
+LCDsend(0x20);
+LCDsend(0x24); _delay((unsigned long)((500)*(1000000/4000000.0))); LCDsend(0x20);
+_delay((unsigned long)((5)*(1000000/4000.0)));
+
+LCDsend2x4(0x28, 0);
+LCDsend2x4(0x06, 0);
+LCDsend2x4(0x0f, 0);
+LCDsend2x4(0x01, 0);
+_delay((unsigned long)((2)*(1000000/4000.0)));
+}
+
+void LCDcmd(unsigned char c)
+{
+LCDsend2x4(c, 0);
+}
+
+void LCDchar(unsigned char c)
+{
+LCDsend2x4(c, 0x01);
+}
+
+void LCDstr(unsigned char *p)
+{
+unsigned char c;
+
+while((c = *p++)) LCDchar(c);
+}
+
+int LCDbusy()
+{
+if(LCDrecv(0) & 0x80) return 1;
+return 0;
+}
+
+
+bool lcd(unsigned char temperature, unsigned char luminosity, unsigned char alarm, unsigned char ctl, unsigned char h, unsigned char m, unsigned char s, unsigned char state, unsigned char temperature_alarm, unsigned char luminosity_alarm, unsigned char alah, unsigned char alam,unsigned char alas )
+{
 unsigned char buf[17];
 
-uint8_t state = 0;
-
-# 206
-SYSTEM_Initialize();
-
-
-TMR0_SetInterruptHandler(TMR0_callback);
-
-# 215
-(INTCONbits.GIE = 1);
-
-
-(INTCONbits.PEIE = 1);
-
-# 226
-i2c1_driver_open();
-TRISCbits.TRISC3 = 1;
-TRISCbits.TRISC4 = 1;
-WPUC3 = 1;
-WPUC4 = 1;
-
-
-unsigned char ctl=1;
-LCDinit();
-
-while (1)
+if (alarm)
 {
-
-if (PMON != 0 && (timer_flag%PMON) == 0){
-c = tsttc();
-l = lumin();
-
+LCDcmd(0x8F);
+sprintf(buf, "A");
+LCDstr(buf);
 }
-checkButtonS1();
-checkButtonS2();
-
-switch(state){
-case 0:
-
-if(btn1State == 1){
-
-state = 1;
-}
-break;
-case 1:
-
-if(btn2State == 1){
-
-conf_clock_hh();
-}else if(btn1State == 1){
-
-state = 2;
-}
-break;
-case 2:
-if(btn2State == 1){
-
-conf_clock_mm();
-}else if(btn1State == 1){
-
-state = 3;
-}
-break;
-case 3:
-if(btn2State == 1){
-
-conf_clock_ss();
-}else if(btn1State == 1){
-
-state = 4;
-}
-break;
-case 4:
-if(btn2State == 1){
-
-state = 5;
-}else if(btn1State == 1){
-
-state = 8;
-}
-break;
-case 5:
-if(btn2State == 1){
-
-conf_alarm_hh();
-}else if(btn1State == 1){
-
-state = 6;
-}
-break;
-case 6:
-if(btn2State == 1){
-
-conf_alarm_mm();
-}else if(btn1State == 1){
-
-state = 7;
-}
-break;
-case 7:
-if(btn2State == 1){
-
-conf_alarm_ss();
-}else if(btn1State == 1){
-
-state = 8;
-}
-break;
-case 8:
-if(btn2State == 1){
-
-state = 9;
-}else if(btn1State == 1){
-
-state = 10;
-}
-break;
-case 9:
-if(btn2State == 1){
-
-conf_temp();
-}else if(btn1State == 1){
-
-state = 10;
-}
-break;
-case 10:
-if(btn2State == 1){
-
-state = 11;
-}else if(btn1State == 1){
-
-state = 12;
-}
-break;
-case 11:
-if(btn2State == 1){
-
-conf_lumin();
-}else if(btn1State == 1){
-
-state = 12;
-}
-break;
-case 12:
-if(btn2State == 1){
-
-conf_alarm_flag();
-}else if(btn1State == 1){
-
-state = 0;
-}
-break;
+else
+{
+LCDcmd(0x8F);
+sprintf(buf, "a");
+LCDstr(buf);
 }
 
 
 
-lcd(c, l, ALAF, ctl, CLKH, CLKM, (timer_flag%60), state, ALAT, ALAL, ALAH, ALAM, ALAS);
+if(state==0)
+{
+LCDcmd(0x80);
+sprintf(buf, "%02d:%02d:%02d", h,m,s);
+LCDstr(buf);
+
+LCDcmd(0xc0);
+sprintf(buf, "%02d C", temperature);
+LCDstr(buf);
+
+LCDcmd(0xce);
+sprintf(buf, "L%01d", luminosity);
+LCDstr(buf);
+
+if (ctl==1)
+{
+LCDcmd(0x8A);
+sprintf(buf, "C");
+LCDstr(buf);
+LCDcmd(0x9A);
 }
+else if (ctl==2)
+{
+LCDcmd(0x8A);
+sprintf(buf, "T");
+LCDstr(buf);
+LCDcmd(0x9A);
 }
-
-void TMR0_callback(void){
-timer_flag++;
-if(timer_flag % 60 == 0){
-CLKM++;
-
-}
-if(CLKM % 60 == 0 && CLKM != 0){
-CLKH++;
-CLKH %= 24;
-CLKM = 0;
-
-DATAEE_WriteByte(159,CLKH);
-DATAEE_WriteByte(160,CLKM);
-
-}
-}
-
-
-void save_register(unsigned char l, unsigned char c){
-static uint16_t n = 0;
-log buf;
-buf.hour = CLKH;
-buf.min = CLKM;
-buf.sec = (timer_flag%60);
-buf.temp = c;
-buf.lum = l;
-reg[n] = buf;
-DATAEE_WriteByte(n++,buf.hour);
-DATAEE_WriteByte(n++,buf.min);
-DATAEE_WriteByte(n++,buf.sec);
-DATAEE_WriteByte(n++,buf.temp);
-DATAEE_WriteByte(n++,buf.lum);
-n = n % (5*25);
+else
+{
+LCDcmd(0x8A);
+sprintf(buf, "L");
+LCDstr(buf);
+LCDcmd(0x9A);
 }
 
-void checkButtonS1(void) {
-if (btn1State == 0) {
-if (PORTBbits.RB4 == 0) {
-_delay((unsigned long)((200)*(1000000/4000.0)));
-btn1State = 1;
 }
-} else if (PORTBbits.RB4 == 1) {
-btn1State = 0;
+else
+{
+LCDcmd(0x80);
+sprintf(buf, "%02d:%02d:%02d", h,m,s);
+LCDstr(buf);
+
+LCDcmd(0x8A);
+sprintf(buf, "CTL");
+LCDstr(buf);
+
+LCDcmd(0xc0);
+sprintf(buf, "%02d C", temperature);
+LCDstr(buf);
+
+LCDcmd(0xce);
+sprintf(buf, "L%01d", luminosity_alarm);
+LCDstr(buf);
+
+if (state ==1)
+{
+LCDcmd(0x81);
 }
+if (state ==2)
+{
+LCDcmd(0x84);
 }
-
-void checkButtonS2(void) {
-if (btn2State == 0) {
-if (PORTCbits.RC5 == 0) {
-_delay((unsigned long)((200)*(1000000/4000.0)));
-btn2State = 1;
-}
-
-} else if (PORTCbits.RC5 == 1) {
-btn2State = 0;
-}
-}
-
-# 435
-unsigned char tsttc (void){
-unsigned char value;
-do{
-while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-
-WriteI2C(0x9a | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x9a | 0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-value = ReadI2C(); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
-} while (!(value & 0x40));
-
-while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x9a | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-WriteI2C(0x9a | 0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-value = ReadI2C(); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
-
-return value;
+if (state ==3)
+{
+LCDcmd(0x87);
 }
 
 
-
-
-void conf_clock_hh(void){
-if (CLKH == 23){
-CLKH = 0;
-}else{
-CLKH++;
+if (state ==4)
+{
+LCDcmd(0x80);
+sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);
+LCDstr(buf);
+LCDcmd(0x8a);
 }
 
-return;
+if (state ==5)
+{
+LCDcmd(0x80);
+sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);
+LCDstr(buf);
+LCDcmd(0x81);
+
 }
 
-void conf_clock_mm(void){
-if (CLKM == 59){
-CLKM = 0;
-}else{
-CLKM++;
+if (state ==6)
+{
+LCDcmd(0x80);
+sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);
+LCDstr(buf);
+LCDcmd(0x84);
+
 }
 
-return;
-}
+if (state ==7)
+{
+LCDcmd(0x80);
+sprintf(buf, "%02d:%02d:%02d", alah, alam, alas);
+LCDstr(buf);
+LCDcmd(0x87);
 
-void conf_clock_ss(void){
-timer_flag++;
-return;
-}
-
-void conf_alarm_hh(void){
-if (ALAH == 23){
-ALAH = 0;
-}else{
-ALAH++;
-}
-
-return;
-}
-
-void conf_alarm_mm(void){
-if (ALAM == 59){
-ALAM = 0;
-}else{
-ALAM++;
-}
-
-return;
-}
-
-void conf_alarm_ss(void){
-if (ALAS == 59){
-ALAS = 0;
-}else{
-ALAS++;
-}
-
-return;
-}
-
-void conf_temp(void){
-
-if(ALAT == 50){
-ALAT = 0;
-}else{
-ALAT++;
-}
-return;
 }
 
 
-void conf_lumin(void){
-
-if(ALAL == 7){
-ALAL = 0;
-}else{
-ALAL++;
+if (state ==8)
+{
+LCDcmd(0xc0);
+sprintf(buf, "%02d C", temperature_alarm);
+LCDstr(buf);
+LCDcmd(0x8b);
 }
 
-return;
+
+
+if (state ==9)
+{
+LCDcmd(0xc0);
+sprintf(buf, "%02d C", temperature_alarm);
+LCDstr(buf);
+LCDcmd(0xc1);
 }
 
-void conf_alarm_flag(void){
 
-if(ALAF == 0){
-ALAF = 1;
-}else{
-ALAF = 0;
+
+if (state ==10)
+{
+LCDcmd(0xce);
+sprintf(buf, "L%01d", luminosity_alarm);
+LCDstr(buf);
+LCDcmd(0x8c);
 }
 
-return;
+
+if (state ==11)
+{
+LCDcmd(0xce);
+sprintf(buf, "L%01d", luminosity_alarm);
+LCDstr(buf);
+LCDcmd(0xcf);
 }
 
+if (state ==12)
+{
+LCDcmd(0x0f);
+}
+}
+return(1);
+}
+
+unsigned char lumin(void)
+{
+unsigned short luminosity;
+ADCC_Initialize();
+ADCC_StartConversion(CH_0);
+luminosity = 0x0000;
+luminosity = ADCC_GetConversionResult();
+luminosity = luminosity << 6;
+luminosity = luminosity >>13;
+return(luminosity);
+}
